@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegate Registration | RAIT-MUN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --somaiya-navy: #003366;
+            --somaiya-maroon: #8B1538;
+            --somaiya-gold: #D4A017;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: white;
+            color: var(--somaiya-navy);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background-color: var(--somaiya-gold);
+            color: var(--somaiya-navy);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--somaiya-maroon);
+            color: white;
+        }
+
+        .form-section {
+            background: white;
+            border-left: 4px solid var(--somaiya-gold);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--somaiya-navy);
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            color: var(--somaiya-navy);
+        }
+
+        .form-label.required::after {
+            content: ' *';
+            color: #ef4444;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 0.75rem;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-item input[type="radio"],
+        .checkbox-item input[type="checkbox"] {
+            accent-color: var(--somaiya-navy);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(0,51,102,0.05), rgba(139,21,56,0.05));
+            border-left: 4px solid var(--somaiya-gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .price-box {
+            background: #f9f9f9;
+            border: 2px solid var(--somaiya-gold);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .price-title {
+            font-weight: 700;
+            color: var(--somaiya-navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .committee-card {
+            background: white;
+            border-top: 4px solid var(--somaiya-navy);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .committee-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--somaiya-maroon);
+            margin-bottom: 0.75rem;
+        }
+
+        .committee-detail {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-sm transition-all duration-300" id="main-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#003366] to-[#8B1538] flex items-center justify-center text-white font-bold text-xl rounded-sm">L</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide leading-none text-gray-900">LOKNITI</h1>
+                    <p class="text-[11px] tracking-wider text-gray-500 font-semibold">SSBAS MUN 2026</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="index.html#about" class="nav-link text-gray-700 text-sm">Our Mission</a>
+                <a href="index.html#committees" class="nav-link text-gray-700 text-sm">Committees</a>
+                <a href="index.html#impact" class="nav-link text-gray-700 text-sm">Impact</a>
+                <a href="register.html" class="btn-primary">Register</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden text-gray-800" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Registration Header -->
+    <section class="bg-gradient-to-r from-[#003366] to-[#8B1538] text-white pt-32 pb-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-[#D4A017] font-bold text-sm tracking-widest uppercase mb-4">Delegate Registration</p>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Join SSBAS-MUN 2026</h1>
+            <p class="text-xl opacity-90 max-w-2xl mx-auto">
+                Secure your position as a delegate and shape the future through diplomacy and debate.
+            </p>
+            <div class="mt-6 text-lg font-semibold">
+                <p>📅 <strong>10th & 11th January 2026</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-12 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Conference Info Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold mb-8 text-center">Conference Information</h2>
+                
+                <div class="price-box">
+                    <div class="price-title">💰 Registration Fee Structure</div>
+                    <div class="space-y-3 text-gray-700">
+                        <p>✓ Individual: <strong>₹1,799</strong></p>
+                        <p>✓ Delegation: <strong>₹1,549</strong> per delegate (min. 10 delegates)</p>
+                        <p>✓ In-house (RAIT/MBATECH): <strong>₹1,399</strong></p>
+                    </div>
+                </div>
+
+                <div class="price-box">
+                    <div class="price-title">🏆 Cash Prizes - Total Pool: ₹1,00,000+</div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">College Committees (UNSC • UNHRC • AIPPM)</p>
+                            <p class="text-gray-700">Best Delegate: ₹12,000 | High Commendation: ₹7,000 | Special Mention: ₹3,000</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">International Press</p>
+                            <p class="text-gray-700">Best Reporter: ₹4,000</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">Best Delegation</p>
+                            <p class="text-gray-700">₹10,000</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 mb-2">School Committee (ECOSOC)</p>
+                            <p class="text-gray-700">Best Delegate: ₹7,000 | High Commendation: ₹3,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <p class="font-semibold text-gray-800 mb-2">📌 Important Notes:</p>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li>✓ Early bird offer ended on December 5, 2025</li>
+                        <li>✓ Slots are limited and allocated on first-come, first-served basis</li>
+                        <li>✓ Please register promptly to secure your position</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Committees Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold mb-8 text-center">Committees & Agendas</h2>
+                
+                <div class="committee-card">
+                    <div class="committee-title">👑 United Nations Security Council (UNSC)</div>
+                    <div class="committee-detail"><strong>Agenda:</strong> Assessing the ongoing conflict in the Republic of Sudan.</div>
+                    <div class="committee-detail"><strong>Chairperson:</strong> Mohil Mehra</div>
+                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Utkarsh Karmungikar</div>
+                </div>
+
+                <div class="committee-card">
+                    <div class="committee-title">👑 United Nations Human Rights Council (UNHRC)</div>
+                    <div class="committee-detail"><strong>Agenda:</strong> The impact of digital surveillance and artificial intelligence on the right to privacy and freedom of expression.</div>
+                    <div class="committee-detail"><strong>Chairperson:</strong> Devak Bhardwaj</div>
+                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Ismat Yusuf</div>
+                </div>
+
+                <div class="committee-card">
+                    <div class="committee-title">👑 All India Political Parties Meet (AIPPM)</div>
+                    <div class="committee-detail"><strong>Agenda:</strong> Formulating a national strategy against terrorism and cross-border infiltration.</div>
+                    <div class="committee-detail"><strong>Moderator-in-Chief:</strong> Aman Yadav</div>
+                    <div class="committee-detail"><strong>Moderator:</strong> Dibyaranjan Swain</div>
+                    <div class="committee-detail"><strong>Deputy Moderator:</strong> Diya Tomar</div>
+                </div>
+
+                <div class="committee-card">
+                    <div class="committee-title">👑 Economic and Social Council (ECOSOC – School)</div>
+                    <div class="committee-detail"><strong>Agenda:</strong> Harmonizing universal human rights with national sovereignty and traditional cultural frameworks regarding SOGI, with emphasis on workplace inequality and inclusive development.</div>
+                    <div class="committee-detail"><strong>Chairperson:</strong> Pratyaksh Parihar</div>
+                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Aaryan Saiyed</div>
+                </div>
+
+                <div class="committee-card">
+                    <div class="committee-title">👑 International Press (IP)</div>
+                    <div class="committee-detail"><strong>Press Head:</strong> Seyan Nagpal</div>
+                </div>
+            </section>
+
+            <!-- Registration Form -->
+            <section>
+                <h2 class="text-3xl font-bold mb-8 text-center">Delegate Registration Form</h2>
+
+                <form id="registrationForm" onsubmit="handleSubmit(event)" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-[#003366] mb-6">Personal Information</h3>
+                        
+                        <label class="form-label required">Full Name</label>
+                        <input type="text" class="form-input" name="name" required>
+
+                        <label class="form-label required">Email Address</label>
+                        <input type="email" class="form-input" name="email" required>
+
+                        <label class="form-label required">Phone Number (WhatsApp)</label>
+                        <input type="tel" class="form-input" name="phone" required>
+
+                        <label class="form-label required">Academic Year / Grade</label>
+                        <input type="text" class="form-input" name="academic_year" placeholder="e.g., 2nd Year B.Tech" required>
+                    </div>
+
+                    <!-- Institute Information -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-[#003366] mb-6">Institute & Delegation</h3>
+                        
+                        <label class="form-label required">Name of Your Institute</label>
+                        <input type="text" class="form-input" name="institute" required>
+
+                        <label class="form-label">Name of Delegation (if applicable)</label>
+                        <input type="text" class="form-input" name="delegation_name" placeholder="Leave blank if registering as individual">
+
+                        <label class="form-label">Name of Head Delegate (if delegation)</label>
+                        <input type="text" class="form-input" name="head_delegate" placeholder="Leave blank if individual">
+
+                        <label class="form-label">Upload ID Card (In-house delegates only)</label>
+                        <div class="info-card">
+                            <p class="font-semibold mb-2">📸 How to Submit Your ID Card Photo:</p>
+                            <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                                <li>Upload your ID card photo to <strong>Google Drive</strong></li>
+                                <li>Right-click on the file → Select <strong>"Share"</strong></li>
+                                <li>Change access to <strong>"Anyone with the link"</strong></li>
+                                <li>Copy the shareable link and paste it below</li>
+                            </ol>
+                        </div>
+                        <input type="url" class="form-input" name="id_card_link" placeholder="Paste Google Drive link here (e.g., https://drive.google.com/file/d/1abc...)" accept="image/*,.pdf">
+                    </div>
+
+                    <!-- MUN Experience -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-[#003366] mb-6">MUN Experience</h3>
+                        
+                        <label class="form-label required">Years of MUN Experience</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="exp0" name="experience" value="0-5" required>
+                                <label for="exp0">0-5 years</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="exp5" name="experience" value="5-10">
+                                <label for="exp5">5-10 years</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="exp10" name="experience" value="10-15">
+                                <label for="exp10">10-15 years</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="exp15" name="experience" value="15-20">
+                                <label for="exp15">15-20 years</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="exp20" name="experience" value="20+">
+                                <label for="exp20">20+ years</label>
+                            </div>
+                        </div>
+
+                        <label class="form-label required">Describe Your MUN Experience</label>
+                        <textarea class="form-textarea" name="experience_description" rows="4" placeholder="Tell us about your MUN journey..." required></textarea>
+                    </div>
+
+                    <!-- Committee Preferences -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-[#003366] mb-6">Committee Preferences</h3>
+                        
+                        <label class="form-label required">Committee Preference 1 (1st Choice)</label>
+                        <select class="form-select" name="committee_1" required>
+                            <option value="">-- Select Committee --</option>
+                            <option value="UNSC">United Nations Security Council (UNSC)</option>
+                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
+                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
+                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
+                            <option value="IP">International Press (IP)</option>
+                        </select>
+
+                        <label class="form-label required">Committee Preference 2 (2nd Choice)</label>
+                        <select class="form-select" name="committee_2" required>
+                            <option value="">-- Select Committee --</option>
+                            <option value="UNSC">United Nations Security Council (UNSC)</option>
+                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
+                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
+                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
+                            <option value="IP">International Press (IP)</option>
+                        </select>
+
+                        <label class="form-label required">Committee Preference 3 (3rd Choice)</label>
+                        <select class="form-select" name="committee_3" required>
+                            <option value="">-- Select Committee --</option>
+                            <option value="UNSC">United Nations Security Council (UNSC)</option>
+                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
+                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
+                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
+                            <option value="IP">International Press (IP)</option>
+                        </select>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="form-section">
+                        <h3 class="text-xl font-bold text-[#003366] mb-6">Payment Information</h3>
+                        
+                        <div class="info-card">
+                            <p class="font-semibold mb-3">💳 Payment QR Code</p>
+                            <p class="text-sm text-gray-700 mb-3">Scan the QR code to complete payment. After payment, please provide the transaction ID below.</p>
+                            <div class="w-40 h-40 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <p class="text-gray-500 text-center">QR Code Placeholder</p>
+                            </div>
+                        </div>
+
+                        <label class="form-label required">Payment Transaction ID</label>
+                        <input type="text" class="form-input" name="transaction_id" placeholder="e.g., UPI123456789" required>
+
+                        <label class="form-label required">Upload Payment Screenshot</label>
+                        <div class="info-card">
+                            <p class="font-semibold mb-2">💳 How to Submit Your Payment Proof:</p>
+                            <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                                <li>Take a screenshot of your payment confirmation</li>
+                                <li>Upload the screenshot to <strong>Google Drive</strong></li>
+                                <li>Right-click on the file → Select <strong>"Share"</strong></li>
+                                <li>Change access to <strong>"Anyone with the link"</strong></li>
+                                <li>Copy the shareable link and paste it below</li>
+                            </ol>
+                        </div>
+                        <input type="url" class="form-input" name="payment_screenshot_link" placeholder="Paste Google Drive link here (e.g., https://drive.google.com/file/d/1abc...)" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex gap-4">
+                        <button type="submit" class="btn-primary w-full md:w-auto text-center">
+                            Submit Registration
+                        </button>
+                        <button type="reset" class="px-8 py-3 border-2 border-[#003366] text-[#003366] font-bold uppercase tracking-wide hover:bg-[#003366] hover:text-white transition-all w-full md:w-auto">
+                            Clear Form
+                        </button>
+                    </div>
+
+                    <p class="text-sm text-gray-500 mt-4">
+                        By submitting this form, you agree to the terms and conditions of RAIT-MUN 2026.
+                    </p>
+                </form>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="mt-12 bg-[#f5f5f5] rounded-lg p-8 text-center">
+                <h3 class="text-2xl font-bold mb-6">Questions? Get in Touch</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="font-semibold text-[#003366] mb-2">Secretary General</p>
+                        <p class="text-gray-700">Dhruthi Vijayanand</p>
+                        <p class="text-[#003366] font-bold">+91 8169703035</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-[#003366] mb-2">Director General</p>
+                        <p class="text-gray-700">Malik Ahmad Khan</p>
+                        <p class="text-[#003366] font-bold">+91 7275993319</p>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="font-semibold text-[#003366] mb-2">Email</p>
+                    <a href="mailto:shlokchauhan190506@gmail.com" class="text-[#8B1538] font-bold hover:underline">shlokchauhan190506@gmail.com</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-white mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 LOKNITI RAIT-MUN. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-[#D4A017] transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#D4A017] transition-colors">Terms of Use</a>
+                    <a href="index.html" class="hover:text-[#D4A017] transition-colors">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(document.getElementById('registrationForm'));
+            
+            // Validate committee preferences are different
+            const com1 = formData.get('committee_1');
+            const com2 = formData.get('committee_2');
+            const com3 = formData.get('committee_3');
+            
+            if (com1 === com2 || com2 === com3 || com1 === com3) {
+                alert('⚠️ Please select different committees for each preference!');
+                return;
+            }
+
+            // Show success message
+            alert('✅ Registration submitted successfully!\n\nWe will contact you shortly with confirmation details.');
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            
+            // In a real scenario, you would send this data to a server
+            console.log('Form Data:', Object.fromEntries(formData));
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

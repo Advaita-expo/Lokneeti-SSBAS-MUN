@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOKNITI | SSBAS Model United Nations</title>
+    <!-- Fonts: Crimson Text for that Harvard/Academic look, Montserrat for modern UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hmun-crimson: #A51C30;
+            --hmun-charcoal: #242424;
+            --hmun-gold: #c4a006;
+            --hmun-cream: #f9f7f2;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--hmun-cream);
+            color: var(--hmun-charcoal);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Crimson Text', serif;
+        }
+
+        .crimson-bg { background-color: var(--hmun-crimson); }
+        .crimson-text { color: var(--hmun-crimson); }
+        
+        /* Hero Video/GIF Background */
+        .hero-container {
+            position: relative;
+            height: 90vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.7)), 
+                        url('https://i.makeagif.com/media/8-01-2021/J3TS0C.gif');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--hmun-crimson);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--hmun-crimson);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .btn-crimson {
+            background-color: var(--hmun-crimson);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--hmun-crimson);
+        }
+
+        .btn-crimson:hover {
+            background-color: transparent;
+            color: var(--hmun-crimson);
+        }
+
+        .glass-card {
+            background: white;
+            border-top: 4px solid var(--hmun-crimson);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 50;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b-2 border-[#A51C30]/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="crimson-bg w-10 h-10 flex items-center justify-center text-white font-bold text-xl serif">L</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-widest leading-none serif">LOKNITI</h1>
+                    <p class="text-[10px] tracking-widest text-gray-500 font-semibold uppercase">SSBAS MUN 2026</p>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest">
+                <a href="#about" class="nav-link text-gray-800">THE CONFERENCE</a>
+                <a href="#committees" class="nav-link text-gray-800">COMMITTEES</a>
+                <a href="#sec" class="nav-link text-gray-800">SECRETARIAT</a>
+                <a href="#apply" class="btn-crimson">APPLY NOW</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden text-gray-800" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="flex">
+        <button class="absolute top-6 right-6 text-2xl" onclick="toggleMenu()">&times;</button>
+        <a href="#about" class="py-4 text-xl font-bold serif" onclick="toggleMenu()">The Conference</a>
+        <a href="#committees" class="py-4 text-xl font-bold serif" onclick="toggleMenu()">Committees</a>
+        <a href="#sec" class="py-4 text-xl font-bold serif" onclick="toggleMenu()">Secretariat</a>
+        <a href="#apply" class="mt-8 btn-crimson" onclick="toggleMenu()">Register</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero-container">
+        <div class="hero-bg"></div>
+        <div class="relative z-10 px-4">
+            <h2 class="text-lg md:text-2xl font-light tracking-[0.3em] mb-4 uppercase">Leadership • Diplomacy • Integrity</h2>
+            <h1 class="text-6xl md:text-9xl font-bold serif mb-6 tracking-tighter">LOKNITI</h1>
+            <p class="max-w-2xl mx-auto text-sm md:text-lg italic font-light opacity-90 leading-relaxed serif">
+                "Policy is the art of the possible; leadership is the art of the necessary."
+            </p>
+            <div class="mt-12 flex flex-col md:flex-row justify-center gap-4">
+                <a href="#about" class="btn-crimson">Discover the Mission</a>
+                <a href="#apply" class="px-8 py-3 border border-white/50 backdrop-blur-sm hover:bg-white hover:text-black transition-all uppercase text-xs font-bold tracking-widest">Delegate Registration</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-5xl mx-auto text-center">
+        <h2 class="section-title serif">The Lokniti Tradition</h2>
+        <p class="text-lg text-gray-700 leading-loose mb-10">
+            Hosted by SSBAS Academy, <strong>Lokniti MUN</strong> is a premier simulation of international diplomacy modeled after the world-renowned Harvard MUN standards. We invite delegates to step into the shoes of global leaders, tackling complex socio-political crises through rigorous debate, parliamentary procedure, and collaborative resolution-building.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+            <div class="p-8 glass-card">
+                <h3 class="serif text-2xl crimson-text mb-4">65+ Countries</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-gray-500">Global Representation</p>
+            </div>
+            <div class="p-8 glass-card">
+                <h3 class="serif text-2xl crimson-text mb-4">12 Committees</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-gray-500">Diverse Discourse</p>
+            </div>
+            <div class="p-8 glass-card">
+                <h3 class="serif text-2xl crimson-text mb-4">3 Days</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-gray-500">Intensive Diplomacy</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter from Sec Gen (Harvard Style) -->
+    <section class="bg-white py-24 px-6 border-y border-gray-100">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/3">
+                <div class="aspect-[3/4] crimson-bg grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden">
+                   <!-- Placeholder for Sec Gen Image -->
+                   <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Secretary General" class="object-cover h-full w-full opacity-80">
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h4 class="text-xs font-bold crimson-text tracking-[0.2em] mb-2 uppercase">Welcome Message</h4>
+                <h2 class="serif text-4xl mb-6">From the Secretary-General</h2>
+                <div class="space-y-4 text-gray-600 italic serif leading-relaxed">
+                    <p>"It is my distinct honor to welcome you to the fourth edition of Lokniti. In a world increasingly defined by polarization, our conference serves as a sanctuary for critical thinking and constructive disagreement..."</p>
+                    <p>"We have designed this year's committees to push delegates beyond their comfort zones, demanding not just eloquence, but true diplomatic strategy."</p>
+                </div>
+                <p class="mt-8 font-bold tracking-widest text-sm uppercase">— Arjun Varma, Secretary-General</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committees -->
+    <section id="committees" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="section-title serif">Committees & Agendas</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- DISEC -->
+            <div class="glass-card p-10">
+                <div class="crimson-text text-sm font-bold tracking-widest mb-4">GA-01</div>
+                <h3 class="serif text-2xl mb-4">DISEC</h3>
+                <p class="text-sm text-gray-600 mb-6">Disarmament and International Security Committee: Addressing the proliferation of autonomous weapons systems in urban warfare.</p>
+                <a href="#" class="text-xs font-bold crimson-text hover:underline tracking-widest">VIEW BACKGROUND GUIDE &rarr;</a>
+            </div>
+            <!-- UNSC -->
+            <div class="glass-card p-10">
+                <div class="crimson-text text-sm font-bold tracking-widest mb-4">SPECIALIZED</div>
+                <h3 class="serif text-2xl mb-4">UNSC</h3>
+                <p class="text-sm text-gray-600 mb-6">Security Council: Evaluating the geopolitical implications of sovereignty disputes in the Arctic Circle.</p>
+                <a href="#" class="text-xs font-bold crimson-text hover:underline tracking-widest">VIEW BACKGROUND GUIDE &rarr;</a>
+            </div>
+            <!-- ECOSOC -->
+            <div class="glass-card p-10">
+                <div class="crimson-text text-sm font-bold tracking-widest mb-4">GA-02</div>
+                <h3 class="serif text-2xl mb-4">ECOSOC</h3>
+                <p class="text-sm text-gray-600 mb-6">Economic and Social Council: Developing a global framework for the ethical regulation of decentralized finance.</p>
+                <a href="#" class="text-xs font-bold crimson-text hover:underline tracking-widest">VIEW BACKGROUND GUIDE &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 border-b border-white/10 pb-12">
+            <div class="col-span-2">
+                <h2 class="serif text-3xl mb-4 tracking-wider">LOKNITI</h2>
+                <p class="text-gray-400 max-w-md text-sm leading-relaxed">
+                    Lokniti SSBAS MUN is dedicated to the pursuit of diplomatic excellence and the empowerment of youth leaders through high-stakes simulation and academic rigor.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs tracking-widest uppercase mb-6 text-white/50">Navigation</h4>
+                <ul class="space-y-3 text-sm text-gray-300 font-medium">
+                    <li><a href="#" class="hover:text-white transition-colors">Apply Now</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Resources</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">History</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Venue</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs tracking-widest uppercase mb-6 text-white/50">Contact</h4>
+                <p class="text-sm text-gray-300">SSBAS Academy Campus</p>
+                <p class="text-sm text-gray-300 mt-2">info@lokniti-ssbas.org</p>
+                <div class="flex space-x-4 mt-6">
+                    <!-- Social Icons (Simulated) -->
+                    <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#A51C30] cursor-pointer transition-all">
+                        <span class="text-[10px]">IG</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#A51C30] cursor-pointer transition-all">
+                        <span class="text-[10px]">LI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.2em] text-gray-500 font-bold uppercase">
+            <p>© 2026 LOKNITI MUN. ALL RIGHTS RESERVED.</p>
+            <p class="mt-4 md:mt-0 italic">In partnership with the SSBAS Department of Political Science</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

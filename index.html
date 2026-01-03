@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOKNITI | SSBAS Model United Nations</title>
+    <!-- Gates Foundation Style: Clean sans-serif fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --primary-dark: #1a1a1a;
+            --accent-yellow: #D4A017;
+            --accent-teal: #8B1538;
+            --accent-orange: #C41E3A;
+            --accent-purple: #6B3FA0;
+            --light-gray: #f5f5f5;
+            --text-gray: #555555;
+            --somaiya-navy: #003366;
+            --somaiya-maroon: #8B1538;
+            --somaiya-gold: #D4A017;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: white;
+            color: var(--primary-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .display {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Somaiya-style Hero */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #003366 0%, #8B1538 50%, #D4A017 100%);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Primary Button - Gates Style */
+        .btn-primary {
+            background-color: var(--somaiya-gold);
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--somaiya-maroon);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid white;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        /* Impact Stats Section */
+        .impact-stat {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .impact-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Focus Area Cards - Gates Style */
+        .focus-card {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--somaiya-navy);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .focus-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .focus-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .focus-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .focus-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: var(--primary-dark);
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 10rem;
+            color: rgba(255,255,255,0.1);
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            font-family: Georgia, serif;
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: var(--somaiya-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Featured Story Card */
+        .story-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 3rem 2rem 2rem;
+            transform: translateY(30%);
+            transition: transform 0.4s ease;
+        }
+
+        .story-card:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* Animated underline */
+        .animated-underline {
+            background-image: linear-gradient(var(--accent-yellow), var(--accent-yellow));
+            background-size: 0% 3px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.4s ease;
+        }
+
+        .animated-underline:hover {
+            background-size: 100% 3px;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Color accents */
+        .accent-blue { color: var(--somaiya-navy); }
+        .accent-yellow { color: var(--somaiya-gold); }
+        .accent-teal { color: var(--somaiya-maroon); }
+        .accent-orange { color: #FF6B35; }
+        .accent-purple { color: #6B3FA0; }
+        .bg-blue { background-color: var(--somaiya-navy); }
+        .bg-yellow { background-color: var(--somaiya-gold); }
+        .bg-teal { background-color: var(--somaiya-maroon); }
+        .bg-orange { background-color: #FF6B35; }
+        .bg-purple { background-color: #6B3FA0; }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation - Gates Foundation Style -->
+    <nav class="fixed w-full z-50 bg-white shadow-sm transition-all duration-300" id="main-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#003366] to-[#8B1538] flex items-center justify-center text-white font-bold text-xl rounded-sm">L</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide leading-none text-gray-900">LOKNITI</h1>
+                    <p class="text-[11px] tracking-wider text-gray-500 font-semibold">SSBAS MUN 2026</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="#about" class="nav-link text-gray-700 text-sm">Our Mission</a>
+                <a href="#impact" class="nav-link text-gray-700 text-sm">Impact</a>
+                <a href="#committees" class="nav-link text-gray-700 text-sm">Committees</a>
+                <a href="#stories" class="nav-link text-gray-700 text-sm">Stories</a>
+                <a href="register.html" class="btn-primary">Apply Now</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden text-gray-800" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="flex">
+        <button class="absolute top-6 right-6 text-4xl text-gray-400 hover:text-gray-800" onclick="toggleMenu()">&times;</button>
+        <a href="#about" class="py-4 text-2xl font-bold text-gray-800 hover:text-[#003366] transition-colors" onclick="toggleMenu()">Our Mission</a>
+        <a href="#impact" class="py-4 text-2xl font-bold text-gray-800 hover:text-[#003366] transition-colors" onclick="toggleMenu()">Impact</a>
+        <a href="#committees" class="py-4 text-2xl font-bold text-gray-800 hover:text-[#003366] transition-colors" onclick="toggleMenu()">Committees</a>
+        <a href="#stories" class="py-4 text-2xl font-bold text-gray-800 hover:text-[#003366] transition-colors" onclick="toggleMenu()">Stories</a>
+        <a href="register.html" class="mt-8 btn-primary" onclick="toggleMenu()">Apply Now</a>
+    </div>
+
+    <!-- Hero Section - Gates Foundation Style -->
+    <header class="hero-section">
+        <div class="hero-content w-full max-w-7xl mx-auto px-6 py-20 pt-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <p class="text-[#D4A017] font-bold text-sm tracking-widest uppercase mb-4">SSBAS Model United Nations 2026</p>
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none">
+                        LOKNITI
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light opacity-90 mb-4 leading-relaxed">
+                        Empowering Tomorrow's Diplomats
+                    </p>
+                    <p class="text-lg opacity-80 mb-10 max-w-xl leading-relaxed">
+                        Join us in shaping the future of global discourse. Where young leaders develop the skills to tackle humanity's greatest challenges through dialogue, debate, and diplomacy.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="register.html" class="btn-primary text-center">Become a Delegate</a>
+                        <a href="#about" class="btn-secondary text-center">Learn More</a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="rounded-lg shadow-2xl overflow-hidden border-4 border-[#D4A017]">
+                        <img src="https://i.makeagif.com/media/8-01-2021/J3TS0C.gif" 
+                             alt="LOKNITI Conference" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
+            <div class="flex flex-col items-center text-white/60">
+                <span class="text-xs uppercase tracking-widest mb-2">Scroll</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mission Statement Section - Gates Style -->
+    <section id="about" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">Our Mission</p>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight max-w-4xl mx-auto">
+                    We believe every young leader can change the world
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Lokniti is more than a conference—it's a movement to cultivate the next generation of global changemakers through rigorous diplomatic simulation and real-world problem solving.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Numbers - Gates Foundation Style -->
+    <section id="impact" class="py-20 bg-[#1a1a1a] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-[#D4A017] font-bold text-sm tracking-widest uppercase mb-4">Our Impact</p>
+                <h2 class="text-3xl md:text-4xl font-bold">Creating Change Through Dialogue</h2>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="impact-stat">
+                    <div class="impact-number accent-yellow">65+</div>
+                    <p class="text-lg font-semibold mb-1">Countries</p>
+                    <p class="text-sm text-gray-400">Global representation</p>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number accent-teal">500+</div>
+                    <p class="text-lg font-semibold mb-1">Delegates</p>
+                    <p class="text-sm text-gray-400">Young leaders trained</p>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number accent-orange">12</div>
+                    <p class="text-lg font-semibold mb-1">Committees</p>
+                    <p class="text-sm text-gray-400">Diverse forums</p>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number accent-purple">3</div>
+                    <p class="text-lg font-semibold mb-1">Days</p>
+                    <p class="text-sm text-gray-400">Intensive diplomacy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Story / Letter Section - Gates Style -->
+    <section class="py-24 px-6 bg-[#f5f5f5]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-6 -left-6 w-full h-full bg-[#003366] rounded-lg"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Secretary General" 
+                         class="relative z-10 rounded-lg shadow-xl w-full">
+                </div>
+                <div>
+                    <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">Featured Message</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">From the Secretary-General</h2>
+                    <div class="space-y-4 text-gray-600 text-lg leading-relaxed">
+                        <p>"It is my distinct honor to welcome you to the fourth edition of Lokniti. In a world increasingly defined by polarization, our conference serves as a sanctuary for critical thinking and constructive disagreement."</p>
+                        <p>"We have designed this year's committees to push delegates beyond their comfort zones, demanding not just eloquence, but true diplomatic strategy and empathy."</p>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-4">
+                        <div class="w-1 h-16 bg-[#D4A017]"></div>
+                        <div>
+                            <p class="font-bold text-lg">Arjun Varma</p>
+                            <p class="text-gray-500">Secretary-General, Lokniti 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committees - Gates Foundation Focus Areas Style -->
+    <section id="committees" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">Focus Areas</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Committees & Agendas</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Each committee tackles pressing global issues, preparing delegates to lead on the world stage.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- DISEC -->
+                <div class="focus-card bg-white shadow-lg overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="DISEC" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="w-3 h-3 rounded-full bg-[#003366]"></span>
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">GA-01</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">DISEC</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Disarmament and International Security: Addressing autonomous weapons systems in modern warfare.</p>
+                        <a href="#" class="inline-flex items-center text-[#003366] font-bold hover:underline group-hover:translate-x-2 transition-transform">
+                            View Background Guide 
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- UNSC -->
+                <div class="focus-card bg-white shadow-lg overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="UNSC" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="w-3 h-3 rounded-full bg-[#E87722]"></span>
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Specialized</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">UNSC</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Security Council: Evaluating sovereignty disputes and geopolitical implications in the Arctic Circle.</p>
+                        <a href="#" class="inline-flex items-center text-[#003366] font-bold hover:underline group-hover:translate-x-2 transition-transform">
+                            View Background Guide 
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ECOSOC -->
+                <div class="focus-card bg-white shadow-lg overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="ECOSOC" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="w-3 h-3 rounded-full bg-[#00A499]"></span>
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">GA-02</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">ECOSOC</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Economic and Social Council: Developing frameworks for ethical regulation of decentralized finance.</p>
+                        <a href="#" class="inline-flex items-center text-[#003366] font-bold hover:underline group-hover:translate-x-2 transition-transform">
+                            View Background Guide 
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="btn-primary">View All Committees</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section - Gates Style -->
+    <section class="quote-section py-24 px-6 relative overflow-hidden">
+        <span class="quote-mark">"</span>
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <blockquote class="text-3xl md:text-4xl lg:text-5xl text-white font-light leading-relaxed mb-8">
+                Policy is the art of the possible; <span class="text-[#FFB81C] font-semibold">leadership is the art of the necessary.</span>
+            </blockquote>
+            <p class="text-gray-400 text-lg">The guiding principle of Lokniti</p>
+        </div>
+    </section>
+
+    <!-- Stories Section - Gates Foundation Style -->
+    <section id="stories" class="py-24 px-6 bg-[#f5f5f5]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div>
+                    <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">Stories of Change</p>
+                    <h2 class="text-4xl font-bold">Voices from Our Community</h2>
+                </div>
+                <a href="#" class="mt-6 md:mt-0 inline-flex items-center text-[#003366] font-bold hover:underline">
+                    See All Stories 
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Story Card 1 -->
+                <div class="story-card h-96 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Student story" class="w-full h-full object-cover">
+                    <div class="overlay text-white">
+                        <span class="bg-[#FFB81C] text-black px-3 py-1 text-xs font-bold uppercase tracking-wider">Delegate Story</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">From Nervous Delegate to Best Diplomat</h3>
+                        <p class="text-sm opacity-80">How Lokniti transformed my approach to public speaking and global affairs.</p>
+                    </div>
+                </div>
+
+                <!-- Story Card 2 -->
+                <div class="story-card h-96 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Committee session" class="w-full h-full object-cover">
+                    <div class="overlay text-white">
+                        <span class="bg-[#00A499] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider">Committee Insight</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">Crisis Committee: Behind the Scenes</h3>
+                        <p class="text-sm opacity-80">An inside look at how our crisis team creates realistic global scenarios.</p>
+                    </div>
+                </div>
+
+                <!-- Story Card 3 -->
+                <div class="story-card h-96 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Leadership" class="w-full h-full object-cover">
+                    <div class="overlay text-white">
+                        <span class="bg-[#6B3FA0] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider">Alumni Success</span>
+                        <h3 class="text-xl font-bold mt-4 mb-2">Where Are They Now?</h3>
+                        <p class="text-sm opacity-80">Lokniti alumni making waves in diplomacy, policy, and international relations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">Partnerships</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Sponsors & Partners</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    We are grateful to our partners who share our vision of empowering the next generation of global leaders.
+                </p>
+            </div>
+
+            <!-- Sponsor Tiers -->
+            <div class="mb-20">
+                <!-- Platinum Sponsors -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-8 text-center">Platinum Sponsors</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Sponsor 1 -->
+                        <div class="h-40 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#D4A017] hover:shadow-lg transition-all">
+                            <div class="text-center">
+                                <div class="w-20 h-20 rounded-full bg-[#003366] mx-auto mb-3 flex items-center justify-center text-white font-bold text-2xl">S</div>
+                                <p class="font-bold text-gray-800">Somaiya Vidyavihar</p>
+                                <p class="text-sm text-gray-600">University</p>
+                            </div>
+                        </div>
+                        <!-- Sponsor 2 -->
+                        <div class="h-40 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#D4A017] hover:shadow-lg transition-all">
+                            <div class="text-center">
+                                <div class="w-20 h-20 rounded-full bg-[#8B1538] mx-auto mb-3 flex items-center justify-center text-white font-bold text-2xl">P</div>
+                                <p class="font-bold text-gray-800">Partner Organization</p>
+                                <p class="text-sm text-gray-600">Name</p>
+                            </div>
+                        </div>
+                        <!-- Sponsor 3 -->
+                        <div class="h-40 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#D4A017] hover:shadow-lg transition-all">
+                            <div class="text-center">
+                                <div class="w-20 h-20 rounded-full bg-[#D4A017] mx-auto mb-3 flex items-center justify-center text-white font-bold text-2xl">T</div>
+                                <p class="font-bold text-gray-800">Corporate Sponsor</p>
+                                <p class="text-sm text-gray-600">Name</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gold Sponsors -->
+                <div class="mb-16">
+                    <h3 class="text-xl font-bold text-[#8B1538] mb-8 text-center">Gold Sponsors</h3>
+                    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="h-32 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#8B1538] hover:shadow-md transition-all">
+                            <p class="text-center text-sm font-bold text-gray-700">Gold Sponsor</p>
+                        </div>
+                        <div class="h-32 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#8B1538] hover:shadow-md transition-all">
+                            <p class="text-center text-sm font-bold text-gray-700">Gold Sponsor</p>
+                        </div>
+                        <div class="h-32 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#8B1538] hover:shadow-md transition-all">
+                            <p class="text-center text-sm font-bold text-gray-700">Gold Sponsor</p>
+                        </div>
+                        <div class="h-32 rounded-lg bg-[#f5f5f5] flex items-center justify-center border-2 border-[#8B1538] hover:shadow-md transition-all">
+                            <p class="text-center text-sm font-bold text-gray-700">Gold Sponsor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Silver Sponsors -->
+                <div>
+                    <h3 class="text-lg font-bold text-[#003366] mb-6 text-center">Silver Sponsors</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                        <div class="h-24 rounded-lg bg-[#f5f5f5] flex items-center justify-center border border-gray-300 hover:shadow-sm transition-all">
+                            <p class="text-xs font-bold text-gray-600 text-center px-2">Silver</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Become a Sponsor CTA -->
+            <div class="bg-[#f5f5f5] rounded-lg p-12 text-center">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Interested in Becoming a Sponsor?</h3>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Join leading organizations in supporting the next generation of global diplomats. Contact our sponsorship team to explore partnership opportunities.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="mailto:sponsors@lokniti-ssbas.org" class="btn-primary">Sponsor Us</a>
+                    <a href="#" class="px-8 py-4 border-2 border-[#003366] text-[#003366] font-bold uppercase tracking-wide hover:bg-[#003366] hover:text-white transition-all">
+                        Download Brochure
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Gates Style -->
+    <section id="apply" class="py-24 px-6 bg-gradient-to-r from-[#003366] to-[#8B1538] text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Make Your Voice Heard?</h2>
+            <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                Join hundreds of young diplomats from around the globe. Applications for Lokniti 2026 are now open.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="register.html" class="btn-primary text-center">Apply as Delegate</a>
+                <a href="#" class="bg-white/20 hover:bg-white hover:text-[#003366] text-white px-8 py-4 font-bold uppercase tracking-wide transition-all text-center">
+                    Apply as Chair
+                </a>
+            </div>
+            <p class="mt-8 text-sm opacity-70">Application Deadline: February 15, 2026</p>
+        </div>
+    </section>
+
+    <!-- Footer - Gates Foundation Style -->
+    <footer class="bg-[#1a1a1a] text-white">
+        <!-- Top Footer -->
+        <div class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#003366] to-[#8B1538] flex items-center justify-center text-white font-bold text-xl rounded-sm">L</div>
+                        <div>
+                            <h3 class="text-xl font-bold">LOKNITI</h3>
+                            <p class="text-xs text-gray-400">SSBAS MUN 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Empowering the next generation of global leaders through diplomacy, debate, and dialogue.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">Our Mission</a></li>
+                        <li><a href="#committees" class="text-gray-300 hover:text-white transition-colors">Committees</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get Involved -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Get Involved</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#apply" class="text-gray-300 hover:text-white transition-colors">Apply as Delegate</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Apply as Chair</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Partner With Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Volunteer</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Contact Us</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p>SSBAS Academy Campus</p>
+                        <p>info@lokniti-ssbas.org</p>
+                        <div class="flex space-x-4 mt-6">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>© 2026 LOKNITI MUN. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.focus-card, .story-card, .impact-stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
