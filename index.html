@@ -189,6 +189,18 @@
         @media (max-width: 640px) {
             .team-slide { min-width: auto; width: auto; }
         }
+        /* Hide horizontal scrollbar for team slider */
+        .team-slider {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+        }
+        .team-slider::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Webkit */
+        }
+        .team-slider .team-card {
+            min-width: 320px;
+            scroll-snap-align: start;
+        }
         /* Polished pastel card styles matching attachment */
         .team-card { position: relative; overflow: hidden; border-radius: 16px; display: flex; flex-direction: column; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .team-card .card-bg { position: absolute; inset: 0; z-index: 0; }
@@ -211,10 +223,14 @@
     <!-- Header / Navigation - Gates Foundation Style -->
     <nav class="fixed w-full z-50 bg-black shadow-sm transition-all duration-300" id="main-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 group site-brand">
-                <!-- Lokneeti logo -->
-                <img src="Lokneeti logo.PNG" alt="Lokneeti" class="h-24 w-auto">
-            </a>
+                        <a href="#" class="flex items-center space-x-3 group site-brand">
+                                <!-- Lokneeti logo -->
+                                <img src="Lokneeti logo.PNG" alt="Lokneeti" class="h-24 w-auto">
+                                <span class="flex flex-col ml-2">
+                                    <span style="font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; line-height: 1;">LOKNEETI MUN</span>
+                                    <span style="font-size: 0.85rem; color: #ccc; font-weight: 400; margin-top: 2px;">by Somaiya School of Basic and Applied Science</span>
+                                </span>
+                        </a>
 
             <!-- Desktop Links -->
             <div class="hidden md:flex items-center space-x-10">
@@ -457,15 +473,13 @@
     </section>
 
     <!-- Quote Section - Gates Style -->
-    <section class="quote-section py-24 px-6 relative overflow-hidden">
-        <!-- decorative horizontal band behind the quote -->
-        <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-11/12 max-w-7xl h-48 bg-[#eef4fb] rounded-lg z-0 shadow-sm"></div>
+    <section class="quote-section py-24 px-6 relative overflow-hidden" style="background: #23272f;">
         <div class="max-w-4xl mx-auto relative z-10 text-center">
-            <blockquote class="text-3xl md:text-4xl lg:text-5xl text-[#003366] font-light leading-relaxed mb-6">
-                Policy is the art of the possible; <span class="text-[#FFB81C] font-semibold">leadership is the art of the necessary.</span>
+            <blockquote style="font-size:2.2rem; font-weight:300; color:#fff; line-height:1.2; margin-bottom: 1.5rem; text-align:center;">
+                Policy is the art of the possible;<br>
+                <span style="color:#FFB81C; font-size:2.2rem; font-weight:700; display:block; margin-top:0.5rem; text-align:center;">leadership is<br>the art of the necessary.</span>
             </blockquote>
-            <p class="text-gray-600 text-lg italic mb-2">— Prof. Nitin Desai, Dean, SSBAS, Somaiya Vidyavihar University</p>
-            <p class="text-gray-400 text-sm">The guiding principle of Lokneeti</p>
+            <p style="color:#cbd5e1; font-size:1rem; margin-top:1.5rem; text-align:center;">The guiding principle of Lokneeti</p>
         </div>
     </section>
 
@@ -477,7 +491,14 @@
                 <h2 class="text-5xl md:text-6xl font-bold leading-tight">Meet the Team<br>Behind Lokneeti</h2>
             </div>
 
-            <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
+            <div class="relative">
+                <button id="team-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-60 text-white rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-opacity-90 transition" style="outline:none; border:none;">
+                    &#8592;
+                </button>
+                <button id="team-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-60 text-white rounded-full w-10 h-10 flex items-center justify-center shadow hover:bg-opacity-90 transition" style="outline:none; border:none;">
+                    &#8594;
+                </button>
+                <div class="team-slider flex overflow-x-auto gap-6 py-6 px-1" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                 <!-- Team Card 1 -->
                 <article class="team-card rounded-2xl overflow-hidden shadow-md bg-gradient-to-b from-[#fffaeb] to-[#fffaeb] flex flex-col h-full">
                     <div class="w-full h-64 overflow-hidden">
@@ -625,6 +646,27 @@
             </div>
         </div>
     </section>
+    <script>
+    // Team slider autoplay and button scroll
+    const slider = document.querySelector('.team-slider');
+    const leftBtn = document.getElementById('team-left');
+    const rightBtn = document.getElementById('team-right');
+    function scrollByCard(dir = 1) {
+        if (!slider) return;
+        const card = slider.querySelector('.team-card');
+        if (!card) return;
+        const scrollAmount = card.offsetWidth + 24; // 24px gap
+        slider.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+    }
+    if (leftBtn && rightBtn) {
+        leftBtn.onclick = () => scrollByCard(-1);
+        rightBtn.onclick = () => scrollByCard(1);
+    }
+    // Autoplay
+    let autoScroll = setInterval(() => scrollByCard(1), 2500);
+    slider.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    slider.addEventListener('mouseleave', () => { autoScroll = setInterval(() => scrollByCard(1), 2500); });
+    </script>
 
     <!-- Sponsors Section -->
     <section class="py-24 px-6 bg-white">
