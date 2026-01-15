@@ -8,6 +8,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Box button styles for hero section */
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+            text-align: center;
+        }
+        .btn-primary {
+            background: #D4A017;
+            color: #fff !important;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #b38a12;
+            color: #fff;
+        }
+        .btn-secondary {
+            background: #222;
+            color: #fff !important;
+            border: 2px solid #fff;
+        }
+        .btn-secondary:hover {
+            background: #fff;
+            color: #222 !important;
+            border: 2px solid #222;
+        }
         /* Responsive adjustments for quote band on small screens */
         @media (max-width: 640px) {
             .quote-section { padding-top: 2rem; padding-bottom: 2rem; }
@@ -179,7 +209,7 @@
 <body>
 
     <!-- Header / Navigation - Gates Foundation Style -->
-    <nav class="fixed w-full z-50 bg-white shadow-sm transition-all duration-300" id="main-nav">
+    <nav class="fixed w-full z-50 bg-black shadow-sm transition-all duration-300" id="main-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group site-brand">
                 <!-- Lokneeti logo -->
@@ -188,15 +218,15 @@
 
             <!-- Desktop Links -->
             <div class="hidden md:flex items-center space-x-10">
-                <a href="#about" class="nav-link text-gray-700 text-sm">Our Mission</a>
-                <a href="#impact" class="nav-link text-gray-700 text-sm">Impact</a>
-                <a href="#committees" class="nav-link text-gray-700 text-sm">Committees</a>
-                <a href="#stories" class="nav-link text-gray-700 text-sm">Stories</a>
-                <a href="register.html" class="btn-primary">Apply Now</a>
+                <a href="#about" class="nav-link text-white text-sm">Our Mission</a>
+                <a href="#impact" class="nav-link text-white text-sm">Impact</a>
+                <a href="#committees" class="nav-link text-white text-sm">Committees</a>
+                <a href="#stories" class="nav-link text-white text-sm">Stories</a>
+                <a href="register.html" class="btn-primary text-white">Apply Now</a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button class="md:hidden text-gray-800" onclick="toggleMenu()">
+            <button class="md:hidden text-white" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -290,9 +320,9 @@
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="impact-stat">
-                    <div class="impact-number accent-yellow text-4xl md:text-5xl font-bold"><span class="counter" data-target="65">0</span>+</div>
-                    <p class="text-2xl md:text-3xl font-bold mb-1">Countries</p>
-                    <p class="text-lg text-gray-400">Global representation</p>
+                    <div class="impact-number accent-yellow text-4xl md:text-5xl font-bold">50+</div>
+                    <p class="text-2xl md:text-3xl font-bold mb-1">students</p>
+                    <p class="text-lg text-gray-400">from Universities and schools all over Maharashtra</p>
                 </div>
                 <div class="impact-stat">
                     <div class="impact-number accent-teal text-4xl md:text-5xl font-bold"><span class="counter" data-target="120">0</span>+</div>
