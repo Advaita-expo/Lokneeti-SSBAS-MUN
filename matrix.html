@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNSC Country Matrix | Lokneeti MUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #23272f;
+            color: #fff;
+        }
+        h1, h2, h3, th {
+            font-family: 'Playfair Display', serif;
+        }
+        .matrix-table th {
+            background: #003366;
+            color: #FFB81C;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .matrix-table td {
+            background: #23272f;
+            color: #fff;
+            text-align: center;
+            font-size: 1rem;
+            border-bottom: 1px solid #374151;
+        }
+        .matrix-table tr:nth-child(even) td {
+            background: #1a1a1a;
+        }
+        .matrix-table {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col items-center justify-start py-12 px-2">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#FFB81C] text-center">UNSC Country Matrix<br><span class="text-lg md:text-2xl font-normal text-[#fff]">(United Nations Security Council Only)</span></h1>
+        <div class="overflow-x-auto w-full max-w-5xl">
+            <table class="matrix-table w-full text-sm md:text-base">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Diplomatic Representative</th>
+                        <th>Status</th>
+                        <th>Regional Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>People's Republic of China</td><td>Permanent Member</td><td>Asia-Pacific</td></tr>
+                    <tr><td>2</td><td>French Republic</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>3</td><td>United Kingdom of Great Britain and Northern Ireland</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>4</td><td>United States of America</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>5</td><td>Russian Federation</td><td>Permanent Member</td><td>Eastern European Group</td></tr>
+                    <tr><td>6</td><td>Kingdom of Bahrain</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>7</td><td>Islamic Republic of Pakistan</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>8</td><td>Republic of Colombia</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td></tr>
+                    <tr><td>9</td><td>Republic of Panama</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td></tr>
+                    <tr><td>10</td><td>Hellenic Republic</td><td>Non-Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>11</td><td>Kingdom of Denmark</td><td>Non-Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>12</td><td>Republic of Latvia</td><td>Non-Permanent Member</td><td>Eastern European Group</td></tr>
+                    <tr><td>13</td><td>Republic of Liberia</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>14</td><td>Democratic Republic of the Congo</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>15</td><td>Federal Republic of Somalia</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>16</td><td>Syrian Arab Republic</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>17</td><td>Islamic Republic of Afghanistan</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>18</td><td>Republic of Yemen</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>19</td><td>Islamic Republic of Iran</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>20</td><td>Republic of Türkiye</td><td>Western Europe and Others Group (<b>WEOG</b>)</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>21</td><td>State of Israel</td><td>Western Europe and Others Group (<b>WEOG</b>)</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>22</td><td>Federal Republic of Nigeria</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>23</td><td>International Court of Justice (<b>ICJ</b>)</td><td>Observer</td><td>African</td></tr>
+                    <tr><td>24</td><td>International Criminal Court (<b>ICC</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>25</td><td>International Committee of the Red Cross (<b>ICRC</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>26</td><td>International Criminal Police Organization (<b>INTERPOL</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>27</td><td>Office of the United Nations High Commissioner for Human Rights (<b>OHCHR</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>28</td><td>International Law Commission</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>29</td><td>United Nations Development Programme (<b>UNDP</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>30</td><td>United Nations Peace and Security Council</td><td>Observer</td><td>African Region</td></tr>
+                    <tr><td>31</td><td>League of Arab States (<b>Secretariat</b>)</td><td>Observer</td><td>Arab Region</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="index.html" class="mt-10 inline-block btn-primary px-8 py-3 rounded-lg text-lg font-bold" style="background:#FFB81C; color:#003366;">Back to Home</a>
+    </div>
+</body>
+</html>
+
+head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNHRC Country Matrix | Lokneeti MUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #23272f;
+            color: #fff;
+        }
+        h1, h2, h3, th {
+            font-family: 'Playfair Display', serif;
+        }
+        .matrix-table th {
+            background: #B23A1D;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .matrix-table td {
+            background: #23272f;
+            color: #fff;
+            text-align: left;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #374151;
+            padding-left: 1.2rem;
+        }
+        .matrix-table tr:nth-child(even) td {
+            background: #1a1a1a;
+        }
+        .matrix-table {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+        }
+    </style>
+
+<body>
+    <div class="min-h-screen flex flex-col items-center justify-start py-12 px-2">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#B23A1D] text-center">UNHRC Country Matrix<br><span class="text-lg md:text-2xl font-normal text-[#fff]">(United Nations Human Rights Council)</span></h1>
+        <div class="overflow-x-auto w-full max-w-xl">
+            <table class="matrix-table w-full text-base">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Argentina</td></tr>
+                    <tr><td>Australia</td></tr>
+                    <tr><td>Austria</td></tr>
+                    <tr><td>Belgium</td></tr>
+                    <tr><td>Bolivia</td></tr>
+                    <tr><td>Brazil</td></tr>
+                    <tr><td>Canada</td></tr>
+                    <tr><td>Chile</td></tr>
+                    <tr><td>China</td></tr>
+                    <tr><td>Colombia</td></tr>
+                    <tr><td>Czech Republic</td></tr>
+                    <tr><td>Egypt</td></tr>
+                    <tr><td>Ethiopia</td></tr>
+                    <tr><td>Finland</td></tr>
+                    <tr><td>North Korea</td></tr>
+                    <tr><td>France</td></tr>
+                    <tr><td>Germany</td></tr>
+                    <tr><td>Ghana</td></tr>
+                    <tr><td>Greece</td></tr>
+                    <tr><td>India</td></tr>
+                    <tr><td>Indonesia</td></tr>
+                    <tr><td>Iran</td></tr>
+                    <tr><td>Iraq</td></tr>
+                    <tr><td>Israel</td></tr>
+                    <tr><td>Italy</td></tr>
+                    <tr><td>Japan</td></tr>
+                    <tr><td>Mexico</td></tr>
+                    <tr><td>Nepal</td></tr>
+                    <tr><td>Netherlands</td></tr>
+                    <tr><td>New Zealand</td></tr>
+                    <tr><td>Norway</td></tr>
+                    <tr><td>Pakistan</td></tr>
+                    <tr><td>Palestine</td></tr>
+                    <tr><td>Poland</td></tr>
+                    <tr><td>Qatar</td></tr>
+                    <tr><td>Republic of Korea</td></tr>
+                    <tr><td>Romania</td></tr>
+                    <tr><td>Saudi Arabia</td></tr>
+                    <tr><td>South Africa</td></tr>
+                    <tr><td>Spain</td></tr>
+                    <tr><td>Sri Lanka</td></tr>
+                    <tr><td>Sudan</td></tr>
+                    <tr><td>Sweden</td></tr>
+                    <tr><td>Switzerland</td></tr>
+                    <tr><td>Tanzania</td></tr>
+                    <tr><td>Thailand</td></tr>
+                    <tr><td>Ukraine</td></tr>
+                    <tr><td>United Arab Emirates</td></tr>
+                    <tr><td>United Kingdom</td></tr>
+                    <tr><td>United States</td></tr>
+                    <tr><td>Vietnam</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="index.html" class="mt-10 inline-block btn-primary px-8 py-3 rounded-lg text-lg font-bold" style="background:#B23A1D; color:#fff;">Back to Home</a>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country & Portfolio Matrices | Lokneeti MUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #23272f;
+            color: #fff;
+        }
+        h1, h2, h3, th {
+            font-family: 'Playfair Display', serif;
+        }
+        .matrix-table th {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .matrix-table td {
+            background: #23272f;
+            color: #fff;
+            text-align: left;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #374151;
+            padding-left: 1.2rem;
+        }
+        .matrix-table tr:nth-child(even) td {
+            background: #1a1a1a;
+        }
+        .matrix-table {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+            margin-bottom: 2.5rem;
+        }
+        .matrix-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+        .unsc th { background: #003366; color: #FFB81C; }
+        .unhrc th { background: #B23A1D; color: #fff; }
+        .uncsw th { background: #6B3FA0; color: #fff; }
+    </style>
+</head>
+<body>
+    <nav class="w-full bg-black shadow-sm mb-8" style="position:sticky;top:0;z-index:50;">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+        <a href="index.html" class="flex items-center space-x-3 group site-brand">
+          <span style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff;">LOKNEETI MUN</span>
+        </a>
+        <div class="flex items-center space-x-8">
+          <a href="all_matrices.html" class="nav-link text-white text-sm">All Matrices</a>
+          <a href="matrix.html" class="nav-link text-white text-sm">UNSC Matrix</a>
+          <a href="matrix_unhrc.html" class="nav-link text-white text-sm">UNHRC Matrix</a>
+          <a href="matrix_uncsw.html" class="nav-link text-white text-sm">UNCSW Matrix</a>
+        </div>
+      </div>
+    </nav>
+    <div class="min-h-screen flex flex-col items-center justify-start py-12 px-2">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#FFB81C] text-center">Country & Portfolio Matrices<br><span class="text-lg md:text-2xl font-normal text-[#fff]">(All Committees)</span></h1>
+        <!-- Lok Sabha Matrix -->
+        <div class="matrix-title" style="color:#C41E3A;">Lok Sabha Portfolio Matrix</div>
+        <div class="overflow-x-auto w-full max-w-5xl mb-10">
+            <table class="matrix-table w-full text-sm md:text-base" style="border-color:#C41E3A;">
+                <thead>
+                    <tr style="background:#C41E3A;color:#fff;">
+                        <th>Sr. No.</th>
+                        <th>Portfolio</th>
+                        <th>Political Party</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Narendra Modi</td><td>BJP</td></tr>
+                    <tr><td>2</td><td>Amit Shah</td><td>BJP</td></tr>
+                    <tr><td>3</td><td>J P Nadda</td><td>BJP</td></tr>
+                    <tr><td>4</td><td>Nitin Gadkari</td><td>BJP</td></tr>
+                    <tr><td>5</td><td>Nirmala Sitaraman</td><td>BJP</td></tr>
+                    <tr><td>6</td><td>Arjun Ram Meghwal</td><td>BJP</td></tr>
+                    <tr><td>7</td><td>Kiren Rijiju</td><td>BJP</td></tr>
+                    <tr><td>8</td><td>Ashwini Vaishnav</td><td>BJP</td></tr>
+                    <tr><td>9</td><td>Piyush Goyal</td><td>BJP</td></tr>
+                    <tr><td>10</td><td>Rajnath Singh</td><td>BJP</td></tr>
+                    <tr><td>11</td><td>Tejaswi Surya</td><td>BJP</td></tr>
+                    <tr><td>12</td><td>Muralidhar Mohal</td><td>BJP</td></tr>
+                    <tr><td>13</td><td>Shivraj Singh Chouhan</td><td>BJP</td></tr>
+                    <tr><td>14</td><td>K Ram Mohan Naidu</td><td>BJP</td></tr>
+                    <tr><td>15</td><td>Chirag Paswan</td><td>LJP(RV)</td></tr>
+                    <tr><td>16</td><td>Veena Devi</td><td>LJP (RV)</td></tr>
+                    <tr><td>17</td><td>Shrikant Shinde</td><td>Shiv Sena</td></tr>
+                    <tr><td>18</td><td>Nishikant Dubey</td><td>BJP</td></tr>
+                    <tr><td>19</td><td>Krishna Prasad Tenneti</td><td>TDP</td></tr>
+                    <tr><td>20</td><td>Chandra Sekhar Pemmasani</td><td>TDP</td></tr>
+                    <tr><td>21</td><td>Sunil Kushwaha</td><td>JDU</td></tr>
+                    <tr><td>22</td><td>Lovely Anand</td><td>JDU</td></tr>
+                    <tr><td>23</td><td>Jitan Ram Manjhi</td><td>HAM(S)</td></tr>
+                    <tr><td>24</td><td>Naresh Mhaske</td><td>Shiv Sena</td></tr>
+                    <tr><td>25</td><td>Dhairyasheel Mane</td><td>Shiv Sena</td></tr>
+                    <tr><td>26</td><td>Rahul Gandhi</td><td>INC</td></tr>
+                    <tr><td>27</td><td>Gaurav Gogoi</td><td>INC</td></tr>
+                    <tr><td>28</td><td>Shashi Tharoor</td><td>INC</td></tr>
+                    <tr><td>29</td><td>Dr. Mohammad Jawed</td><td>INC</td></tr>
+                    <tr><td>30</td><td>Manoj Kumar</td><td>INC</td></tr>
+                    <tr><td>31</td><td>Rakibul Hussain</td><td>INC</td></tr>
+                    <tr><td>32</td><td>Priyanka Gandhi</td><td>INC</td></tr>
+                    <tr><td>33</td><td>Tariq Anwar</td><td>INC</td></tr>
+                    <tr><td>34</td><td>Akhilesh Yadav</td><td>SP</td></tr>
+                    <tr><td>35</td><td>Dimple Yadav</td><td>SP</td></tr>
+                    <tr><td>36</td><td>Mohibullah</td><td>SP</td></tr>
+                    <tr><td>37</td><td>Dharmendra Yadav</td><td>SP</td></tr>
+                    <tr><td>38</td><td>Pushpendra Saroj</td><td>SP</td></tr>
+                    <tr><td>39</td><td>Abhishek Banarjee</td><td>TMC</td></tr>
+                    <tr><td>40</td><td>Mahua Moitra</td><td>TMC</td></tr>
+                    <tr><td>41</td><td>Sudip Bandyopadhyay</td><td>TMC</td></tr>
+                    <tr><td>42</td><td>Saugata Roy</td><td>TMC</td></tr>
+                    <tr><td>43</td><td>Aga Syed Rahullah Mehdi</td><td>J&KNC</td></tr>
+                    <tr><td>44</td><td>Mian Altaf Ahmed</td><td>J&KNC</td></tr>
+                    <tr><td>45</td><td>Asaduddin Owaisi</td><td>AIMIM</td></tr>
+                    <tr><td>46</td><td>Sheikh Abdul Rashid</td><td>Independent</td></tr>
+                    <tr><td>47</td><td>Chandrashekhar Azad</td><td>ASP KR</td></tr>
+                    <tr><td>48</td><td>Harsimrat Kaur Badal</td><td>SAD</td></tr>
+                    <tr><td>49</td><td>Raj Kumar Roat</td><td>BAP</td></tr>
+                    <tr><td>50</td><td>Vishal Patil</td><td>Independent</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- UNSC Matrix -->
+        <div class="matrix-title" style="color:#FFB81C;">UNSC Country Matrix</div>
+        <div class="overflow-x-auto w-full max-w-5xl">
+            <table class="matrix-table unsc w-full text-sm md:text-base">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Diplomatic Representative</th>
+                        <th>Status</th>
+                        <th>Regional Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>People's Republic of China</td><td>Permanent Member</td><td>Asia-Pacific</td></tr>
+                    <tr><td>2</td><td>French Republic</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>3</td><td>United Kingdom of Great Britain and Northern Ireland</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>4</td><td>United States of America</td><td>Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>5</td><td>Russian Federation</td><td>Permanent Member</td><td>Eastern European Group</td></tr>
+                    <tr><td>6</td><td>Kingdom of Bahrain</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>7</td><td>Islamic Republic of Pakistan</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>8</td><td>Republic of Colombia</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td></tr>
+                    <tr><td>9</td><td>Republic of Panama</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td><td>Latin American and Caribbean Group (<b>GRULAC</b>)</td></tr>
+                    <tr><td>10</td><td>Hellenic Republic</td><td>Non-Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>11</td><td>Kingdom of Denmark</td><td>Non-Permanent Member</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>12</td><td>Republic of Latvia</td><td>Non-Permanent Member</td><td>Eastern European Group</td></tr>
+                    <tr><td>13</td><td>Republic of Liberia</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>14</td><td>Democratic Republic of the Congo</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>15</td><td>Federal Republic of Somalia</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>16</td><td>Syrian Arab Republic</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>17</td><td>Islamic Republic of Afghanistan</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>18</td><td>Republic of Yemen</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>19</td><td>Islamic Republic of Iran</td><td>Asia-Pacific</td><td>Asia-Pacific</td></tr>
+                    <tr><td>20</td><td>Republic of Türkiye</td><td>Western Europe and Others Group (<b>WEOG</b>)</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>21</td><td>State of Israel</td><td>Western Europe and Others Group (<b>WEOG</b>)</td><td>Western Europe and Others Group (<b>WEOG</b>)</td></tr>
+                    <tr><td>22</td><td>Federal Republic of Nigeria</td><td>African Group</td><td>African Group</td></tr>
+                    <tr><td>23</td><td>International Court of Justice (<b>ICJ</b>)</td><td>Observer</td><td>African</td></tr>
+                    <tr><td>24</td><td>International Criminal Court (<b>ICC</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>25</td><td>International Committee of the Red Cross (<b>ICRC</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>26</td><td>International Criminal Police Organization (<b>INTERPOL</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>27</td><td>Office of the United Nations High Commissioner for Human Rights (<b>OHCHR</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>28</td><td>International Law Commission</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>29</td><td>United Nations Development Programme (<b>UNDP</b>)</td><td>Observer</td><td>Global</td></tr>
+                    <tr><td>30</td><td>United Nations Peace and Security Council</td><td>Observer</td><td>African Region</td></tr>
+                    <tr><td>31</td><td>League of Arab States (<b>Secretariat</b>)</td><td>Observer</td><td>Arab Region</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- UNHRC Matrix -->
+        <div class="matrix-title" style="color:#B23A1D;">UNHRC Country Matrix</div>
+        <div class="overflow-x-auto w-full max-w-xl">
+            <table class="matrix-table unhrc w-full text-base">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Argentina</td></tr>
+                    <tr><td>Australia</td></tr>
+                    <tr><td>Austria</td></tr>
+                    <tr><td>Belgium</td></tr>
+                    <tr><td>Bolivia</td></tr>
+                    <tr><td>Brazil</td></tr>
+                    <tr><td>Canada</td></tr>
+                    <tr><td>Chile</td></tr>
+                    <tr><td>China</td></tr>
+                    <tr><td>Colombia</td></tr>
+                    <tr><td>Czech Republic</td></tr>
+                    <tr><td>Egypt</td></tr>
+                    <tr><td>Ethiopia</td></tr>
+                    <tr><td>Finland</td></tr>
+                    <tr><td>North Korea</td></tr>
+                    <tr><td>France</td></tr>
+                    <tr><td>Germany</td></tr>
+                    <tr><td>Ghana</td></tr>
+                    <tr><td>Greece</td></tr>
+                    <tr><td>India</td></tr>
+                    <tr><td>Indonesia</td></tr>
+                    <tr><td>Iran</td></tr>
+                    <tr><td>Iraq</td></tr>
+                    <tr><td>Israel</td></tr>
+                    <tr><td>Italy</td></tr>
+                    <tr><td>Japan</td></tr>
+                    <tr><td>Mexico</td></tr>
+                    <tr><td>Nepal</td></tr>
+                    <tr><td>Netherlands</td></tr>
+                    <tr><td>New Zealand</td></tr>
+                    <tr><td>Norway</td></tr>
+                    <tr><td>Pakistan</td></tr>
+                    <tr><td>Palestine</td></tr>
+                    <tr><td>Poland</td></tr>
+                    <tr><td>Qatar</td></tr>
+                    <tr><td>Republic of Korea</td></tr>
+                    <tr><td>Romania</td></tr>
+                    <tr><td>Saudi Arabia</td></tr>
+                    <tr><td>South Africa</td></tr>
+                    <tr><td>Spain</td></tr>
+                    <tr><td>Sri Lanka</td></tr>
+                    <tr><td>Sudan</td></tr>
+                    <tr><td>Sweden</td></tr>
+                    <tr><td>Switzerland</td></tr>
+                    <tr><td>Tanzania</td></tr>
+                    <tr><td>Thailand</td></tr>
+                    <tr><td>Ukraine</td></tr>
+                    <tr><td>United Arab Emirates</td></tr>
+                    <tr><td>United Kingdom</td></tr>
+                    <tr><td>United States</td></tr>
+                    <tr><td>Vietnam</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- UNCSW Matrix -->
+        <div class="matrix-title" style="color:#6B3FA0;">UNCSW Country Matrix</div>
+        <div class="overflow-x-auto w-full max-w-xl">
+            <table class="matrix-table unc sw w-full text-base">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Saudi Arabia</td></tr>
+                    <tr><td>Iran</td></tr>
+                    <tr><td>Iraq</td></tr>
+                    <tr><td>Lebanon</td></tr>
+                    <tr><td>Egypt</td></tr>
+                    <tr><td>Tunisia</td></tr>
+                    <tr><td>Morocco</td></tr>
+                    <tr><td>Jordan</td></tr>
+                    <tr><td>United Arab Emirates</td></tr>
+                    <tr><td>Qatar</td></tr>
+                    <tr><td>Kuwait</td></tr>
+                    <tr><td>Bahrain</td></tr>
+                    <tr><td>Oman</td></tr>
+                    <tr><td>Syria</td></tr>
+                    <tr><td>United States of America</td></tr>
+                    <tr><td>Canada</td></tr>
+                    <tr><td>United Kingdom</td></tr>
+                    <tr><td>France</td></tr>
+                    <tr><td>Germany</td></tr>
+                    <tr><td>Australia</td></tr>
+                    <tr><td>India</td></tr>
+                    <tr><td>China</td></tr>
+                    <tr><td>Japan</td></tr>
+                    <tr><td>South Korea</td></tr>
+                    <tr><td>Brazil</td></tr>
+                    <tr><td>Argentina</td></tr>
+                    <tr><td>Nigeria</td></tr>
+                    <tr><td>South Africa</td></tr>
+                    <tr><td>Mexico</td></tr>
+                    <tr><td>Turkey</td></tr>
+                    <tr><td>Ukraine</td></tr>
+                    <tr><td>Spain</td></tr>
+                    <tr><td>Belgium</td></tr>
+                    <tr><td>Sweden</td></tr>
+                    <tr><td>Switzerland</td></tr>
+                    <tr><td>Pakistan</td></tr>
+                    <tr><td>Bangladesh</td></tr>
+                    <tr><td>Russia</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="index.html" class="mt-10 inline-block btn-primary px-8 py-3 rounded-lg text-lg font-bold" style="background:#FFB81C; color:#003366;">Back to Home</a>
+    </div>
+</body>
+</html>
