@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delegate Registration | RAIT-MUN 2026</title>
+    <title>Register | Lokneeti MUN</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --somaiya-navy: #003366;
-            --somaiya-maroon: #8B1538;
-            --somaiya-gold: #D4A017;
+            --primary-blue: #003366;
+            --primary-dark: #1a1a1a;
+            --accent-yellow: #D4A017;
+            --accent-maroon: #8B1538;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Source Sans Pro', sans-serif;
             background-color: white;
-            color: var(--somaiya-navy);
+            color: var(--primary-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
         }
 
         h1, h2, h3, h4 {
@@ -24,23 +41,213 @@
             font-weight: 700;
         }
 
+        main {
+            flex: 1;
+        }
+
         .btn-primary {
-            background-color: var(--somaiya-gold);
-            color: var(--somaiya-navy);
-            padding: 1rem 2.5rem;
-            font-weight: 700;
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+            text-align: center;
+            background: var(--accent-yellow);
+            color: #fff !important;
             border: none;
-            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            background-color: var(--somaiya-maroon);
-            color: white;
+            background: #b38a12;
+            color: #fff;
+        }
+
+        @media (max-width: 640px) {
+            nav .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+        }
+
+        .content-section {
+            margin: 3rem 0;
+        }
+
+        .content-section h2 {
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-header::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent-yellow) 20%, var(--accent-yellow) 80%, transparent);
+            margin-top: 1.5rem;
+        }
+
+        .content-section h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-yellow);
+            border-radius: 4px;
+        }
+
+        .info-card strong {
+            color: var(--primary-blue);
+        }
+
+        .award-list {
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+        }
+
+        .award-list li {
+            padding: 0.75rem 0;
+            color: #555;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .award-list li:before {
+            content: "✓";
+            margin-right: 0;
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .award-list strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-right: 0.3rem;
+        }
+
+        .award-list span {
+            color: #555;
+        }
+
+        .cta-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .committee-list {
+            margin: 2.5rem 0;
+        }
+
+        .committee-item {
+            background: white;
+            border: none;
+            padding: 2rem 0;
+            margin-bottom: 0;
+            border-radius: 0;
+            border-bottom: 2px solid #003366;
+        }
+
+        .committee-item:last-child {
+            border-bottom: none;
+        }
+
+        .committee-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-maroon);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .committee-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-yellow);
+            flex-shrink: 0;
+        }
+
+        .committee-item strong {
+            color: var(--primary-blue);
+            display: inline;
+            margin-right: 0.25rem;
+            font-weight: 700;
+        }
+
+        .committee-item p {
+            color: #555;
+            margin: 0.75rem 0 0 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .committee-detail {
+            color: #555;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .committee-detail strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        footer {
+            margin-top: auto;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            flex-shrink: 0;
         }
 
         .form-section {
             background: white;
-            border-left: 4px solid var(--somaiya-gold);
+            border-left: 4px solid var(--accent-yellow);
             padding: 2rem;
             margin-bottom: 2rem;
             border-radius: 4px;
@@ -60,7 +267,7 @@
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: var(--somaiya-navy);
+            border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
         }
 
@@ -68,7 +275,7 @@
             display: block;
             font-weight: 600;
             margin-top: 1.5rem;
-            color: var(--somaiya-navy);
+            color: var(--primary-blue);
         }
 
         .form-label.required::after {
@@ -91,89 +298,180 @@
 
         .radio-item input[type="radio"],
         .checkbox-item input[type="checkbox"] {
-            accent-color: var(--somaiya-navy);
+            accent-color: var(--primary-blue);
             width: 18px;
             height: 18px;
             cursor: pointer;
         }
 
-        .info-card {
-            background: linear-gradient(135deg, rgba(0,51,102,0.05), rgba(139,21,56,0.05));
-            border-left: 4px solid var(--somaiya-gold);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 4px;
+        .icon-inline {
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: var(--accent-yellow);
+            vertical-align: middle;
         }
 
-        .price-box {
-            background: #f9f9f9;
-            border: 2px solid var(--somaiya-gold);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 4px;
+        h3 .icon-inline {
+            color: var(--primary-blue);
         }
 
-        .price-title {
-            font-weight: 700;
-            color: var(--somaiya-navy);
-            margin-bottom: 0.75rem;
+        strong .icon-inline {
+            color: var(--primary-blue);
         }
 
-        .committee-card {
+        .btn-primary .icon-inline {
+            color: #fff;
+        }
+
+        .conference-info-section {
+            margin: 3rem 0;
+        }
+
+        .info-box {
+            border: 3px solid var(--accent-yellow);
+            border-radius: 6px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
             background: white;
-            border-top: 4px solid var(--somaiya-navy);
-            padding: 1.5rem;
+        }
+
+        .info-box h4 {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
             margin-bottom: 1.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .committee-title {
-            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-weight: 700;
-            color: var(--somaiya-maroon);
-            margin-bottom: 0.75rem;
         }
 
-        .committee-detail {
-            color: #666;
-            margin-bottom: 0.5rem;
+        .info-box-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-yellow);
+            flex-shrink: 0;
+        }
+
+        .info-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 0.65rem 0;
+            color: #555;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .info-box li:before {
+            content: "✓";
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .info-box strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .price-detail {
+            margin: 0.5rem 0;
+            color: #555;
             font-size: 0.95rem;
         }
 
-        .nav-link {
-            position: relative;
-            font-weight: 600;
-            transition: color 0.3s ease;
+        .price-detail strong {
+            color: var(--primary-blue);
+            font-weight: 700;
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .section-divider {
+            margin: 1rem 0 0.75rem 0;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .award-category {
+            margin: 1.5rem 0 1rem 0;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .notes-box {
+            border-left: 4px solid var(--accent-yellow);
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+        }
+
+        .notes-box h4 {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notes-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .notes-box li {
+            padding: 0.5rem 0;
+            color: #555;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notes-box li:before {
+            content: "✓";
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
+    <!-- Top Blue Line -->
+    <div style="width: 100%; height: 4px; background: linear-gradient(to right, #003366, #D4A017, #8B1538); position: fixed; top: 0; left: 0; z-index: 100;"></div>
+    
     <!-- Header / Navigation -->
-    <nav class="fixed w-full z-50 bg-white shadow-sm transition-all duration-300" id="main-nav">
+    <nav class="fixed w-full z-50 bg-black shadow-sm transition-all duration-300" id="main-nav" style="top: 4px;">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-12 h-12 bg-gradient-to-br from-[#003366] to-[#8B1538] flex items-center justify-center text-white font-bold text-xl rounded-sm">L</div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-wide leading-none text-gray-900">Lokneeti</h1>
-                    <p class="text-[11px] tracking-wider text-gray-500 font-semibold">SSBAS MUN 2026</p>
-                </div>
+            <a href="index.html" class="flex items-center space-x-3 group site-brand">
+                <img src="Lokneeti logo.PNG" alt="Lokneeti" class="h-24 w-auto">
+                <span class="flex flex-col ml-2">
+                    <span style="font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; line-height: 1;">LOKNEETI MUN</span>
+                    <span style="font-size: 0.85rem; color: #ccc; font-weight: 400; margin-top: 2px;">by Somaiya School of Basic and Applied Science</span>
+                </span>
             </a>
 
-            <!-- Desktop Links -->
             <div class="hidden md:flex items-center space-x-10">
-                <a href="index.html#about" class="nav-link text-gray-700 text-sm">Our Mission</a>
-                <a href="index.html#committees" class="nav-link text-gray-700 text-sm">Committees</a>
-                <a href="index.html#impact" class="nav-link text-gray-700 text-sm">Impact</a>
-                <a href="register.html" class="btn-primary">Register</a>
+                <a href="index.html#about" class="nav-link text-white text-sm">Our Mission</a>
+                <a href="index.html#impact" class="nav-link text-white text-sm">Impact</a>
+                <a href="index.html#committees" class="nav-link text-white text-sm">Committees</a>
+                <a href="all_matrices.html" class="nav-link text-white text-sm">All Matrix</a>
+                <a href="register.html" class="btn-primary text-white">Apply Now</a>
             </div>
 
-            <!-- Mobile Toggle -->
-            <button class="md:hidden text-gray-800" onclick="toggleMenu()">
+            <button class="md:hidden text-white" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -181,298 +479,212 @@
         </div>
     </nav>
 
+    <div id="mobile-menu" style="display:none;position:fixed;inset:0;z-index:60;background:rgba(0,0,0,0.95);flex-direction:column;align-items:center;justify-content:center;">
+        <button class="absolute top-6 right-6 text-4xl text-white hover:text-gray-200" onclick="toggleMenu()">&times;</button>
+        <a href="index.html#about" class="py-4 text-2xl font-bold text-white hover:text-[#D4A017] transition-colors" onclick="toggleMenu()">Our Mission</a>
+        <a href="index.html#impact" class="py-4 text-2xl font-bold text-white hover:text-[#D4A017] transition-colors" onclick="toggleMenu()">Impact</a>
+        <a href="index.html#committees" class="py-4 text-2xl font-bold text-white hover:text-[#D4A017] transition-colors" onclick="toggleMenu()">Committees</a>
+        <a href="index.html#stories" class="py-4 text-2xl font-bold text-white hover:text-[#D4A017] transition-colors" onclick="toggleMenu()">Stories</a>
+        <a href="all_matrices.html" class="py-4 text-2xl font-bold text-white hover:text-[#D4A017] transition-colors" onclick="toggleMenu()">All Matrix</a>
+        <a href="register.html" class="mt-8 btn-primary" onclick="toggleMenu()">Apply Now</a>
+    </div>
+
     <!-- Registration Header -->
-    <section class="bg-gradient-to-r from-[#003366] to-[#8B1538] text-white pt-32 pb-16 px-6">
+    <section class="bg-gradient-to-r from-[#003366] to-[#8B1538] text-white pt-32 pb-20 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <p class="text-[#D4A017] font-bold text-sm tracking-widest uppercase mb-4">Delegate Registration</p>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Join Lokneeti MUN 2026</h1>
-            <p class="text-xl opacity-90 max-w-2xl mx-auto">
+            <p class="text-[#D4A017] font-bold text-sm tracking-widest uppercase mb-6">Delegate Registration</p>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6" style="font-family: 'Playfair Display', serif; letter-spacing: -0.02em;">Join Lokneeti MUN 2026</h1>
+            <p class="text-lg opacity-95 max-w-2xl mx-auto mb-8" style="line-height: 1.8;">
                 Secure your position as a delegate and shape the future through diplomacy and debate.
             </p>
-            <div class="mt-6 text-lg font-semibold">
-                <p>📅 <strong>10th & 11th January 2026</strong></p>
+            <div style="background: rgba(255,255,255,0.1); border: 2px solid #D4A017; padding: 1rem 2rem; display: inline-block; border-radius: 6px; backdrop-filter: blur(10px);">
+                <p style="color: #D4A017; font-weight: 700; font-size: 1.1rem; margin: 0;">
+                    📅 21st & 22nd March 2026
+                </p>
             </div>
         </div>
     </section>
 
-    <main class="py-12 px-6">
-        <div class="max-w-4xl mx-auto">
-            <!-- Conference Info Section -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Conference Information</h2>
-                
-                <div class="price-box">
-                    <div class="price-title">💰 Registration Fee Structure</div>
-                    <div class="space-y-3 text-gray-700">
-                        <p>✓ Individual: <strong>₹1,799</strong></p>
-                        <p>✓ Delegation: <strong>₹1,549</strong> per delegate (min. 10 delegates)</p>
-                        <p>✓ In-house (RAIT/MBATECH): <strong>₹1,399</strong></p>
-                    </div>
-                </div>
+    <main style="margin-top: 2rem; flex: 1;">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <!-- Conference Information Heading -->
+            <div style="text-align: center; margin: 3rem 0 2.5rem 0;">
+                <h2 style="color: var(--primary-blue); font-size: 1.8rem; font-weight: 700; margin: 0;">Conference Information</h2>
+            </div>
 
-                <div class="price-box">
-                    <div class="price-title">🏆 Cash Prizes - Total Pool: ₹1,00,000+</div>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-gray-800 mb-2">College Committees (UNSC • UNHRC • AIPPM)</p>
-                            <p class="text-gray-700">Best Delegate: ₹12,000 | High Commendation: ₹7,000 | Special Mention: ₹3,000</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-800 mb-2">International Press</p>
-                            <p class="text-gray-700">Best Reporter: ₹4,000</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-800 mb-2">Best Delegation</p>
-                            <p class="text-gray-700">₹10,000</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-800 mb-2">School Committee (ECOSOC)</p>
-                            <p class="text-gray-700">Best Delegate: ₹7,000 | High Commendation: ₹3,000</p>
-                        </div>
-                    </div>
+            <!-- Registration Fees -->
+            <section class="conference-info-section">
+                <div class="info-box">
+                    <h4 style="color: var(--primary-blue); border-bottom: 2px solid var(--accent-yellow); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-yellow); flex-shrink: 0;"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+                        <span>Registration Fee</span>
+                    </h4>
+                    <ul class="award-list" style="margin-top: 0;">
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">In-House (SVU) Delegate:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹1,200</span> per delegate</li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Group Delegation (8 or more | In-house or Out-house):</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹1,200</span> per delegate</li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Out-House Individual Delegate:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹1,500</span> per delegate</li>
+                    </ul>
+                    <p style="color: #d97706; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">⚠️</span> Please Note: Registration fees are non-refundable.
+                    </p>
                 </div>
+            </section>
 
-                <div class="info-card">
-                    <p class="font-semibold text-gray-800 mb-2">📌 Important Notes:</p>
-                    <ul class="space-y-2 text-gray-700 text-sm">
-                        <li>✓ Early bird offer ended on December 5, 2025</li>
-                        <li>✓ Slots are limited and allocated on first-come, first-served basis</li>
-                        <li>✓ Please register promptly to secure your position</li>
+            <!-- Awards & Recognitions -->
+            <section class="conference-info-section">
+                <div class="info-box">
+                    <h4 style="color: var(--primary-blue); border-bottom: 2px solid var(--accent-yellow); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-yellow); flex-shrink: 0;"><path d="M6 9H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V11a2 2 0 00-2-2h-2"/><path d="M6 5a2 2 0 012-2h4a2 2 0 012 2v2H6V5z"/><path d="M12 12v6m-3-3h6"/></svg>
+                        <span>Awards & Recognitions</span>
+                    </h4>
+                    
+                    <p style="color: var(--primary-blue); font-weight: 700; font-size: 1.1rem; margin: 1.5rem 0;">💰 Total Prize Pool: <strong>₹65,000+</strong></p>
+                    
+                    <ul class="award-list" style="margin-top: 1.5rem;">
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Best Delegation:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹10,000</span></li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Best Delegate:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹7,000</span></li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">High Commendation:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹4,000</span></li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Best Reporter:</strong> <span style="color: var(--primary-blue); font-weight: 700;">₹5,000</span></li>
+                        <li style="color: #666;"><strong style="color: var(--primary-blue);">Special Mention:</strong> Certificate of Achievement + Exciting Gift Hampers</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Committees Section -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8 text-center">Committees & Agendas</h2>
-                
-                <div class="committee-card">
-                    <div class="committee-title">👑 United Nations Security Council (UNSC)</div>
-                    <div class="committee-detail"><strong>Agenda:</strong> Assessing the ongoing conflict in the Republic of Sudan.</div>
-                    <div class="committee-detail"><strong>Chairperson:</strong> Mohil Mehra</div>
-                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Utkarsh Karmungikar</div>
-                </div>
 
-                <div class="committee-card">
-                    <div class="committee-title">👑 United Nations Human Rights Council (UNHRC)</div>
-                    <div class="committee-detail"><strong>Agenda:</strong> The impact of digital surveillance and artificial intelligence on the right to privacy and freedom of expression.</div>
-                    <div class="committee-detail"><strong>Chairperson:</strong> Devak Bhardwaj</div>
-                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Ismat Yusuf</div>
-                </div>
+            <!-- Committees & Agendas -->
+            <section class="conference-info-section">
+                <div class="info-box">
+                    <h4 style="color: var(--primary-blue); border-bottom: 2px solid var(--accent-yellow); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary-blue); flex-shrink: 0;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <span>Committees & Agendas</span>
+                    </h4>
 
-                <div class="committee-card">
-                    <div class="committee-title">👑 All India Political Parties Meet (AIPPM)</div>
-                    <div class="committee-detail"><strong>Agenda:</strong> Formulating a national strategy against terrorism and cross-border infiltration.</div>
-                    <div class="committee-detail"><strong>Moderator-in-Chief:</strong> Aman Yadav</div>
-                    <div class="committee-detail"><strong>Moderator:</strong> Dibyaranjan Swain</div>
-                    <div class="committee-detail"><strong>Deputy Moderator:</strong> Diya Tomar</div>
-                </div>
+                    <div style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong style="color: var(--primary-blue); font-size: 1.05rem;">1. United Nations Security Council (UNSC)</strong></p>
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.95rem;"><strong style="color: var(--primary-blue);">Chair:</strong> Mr. Aditya Kiran</p>
+                            <p style="margin: 0; color: #666;"><strong style="color: var(--primary-blue);">Agenda:</strong> Reassessing the legality and security implications of counter-terrorism operations conducted without host state consent.</p>
+                            <div style="border-bottom: 1px solid #ddd; margin-top: 2rem;"></div>
+                        </div>
 
-                <div class="committee-card">
-                    <div class="committee-title">👑 Economic and Social Council (ECOSOC – School)</div>
-                    <div class="committee-detail"><strong>Agenda:</strong> Harmonizing universal human rights with national sovereignty and traditional cultural frameworks regarding SOGI, with emphasis on workplace inequality and inclusive development.</div>
-                    <div class="committee-detail"><strong>Chairperson:</strong> Pratyaksh Parihar</div>
-                    <div class="committee-detail"><strong>Vice Chairperson:</strong> Aaryan Saiyed</div>
-                </div>
+                        <div style="margin-bottom: 2rem;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong style="color: var(--primary-blue); font-size: 1.05rem;">2. United Nations Human Rights Council (UNHRC)</strong></p>
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.95rem;"><strong style="color: var(--primary-blue);">Chair:</strong> Adv. Shivam Jain Kakadia</p>
+                            <p style="margin: 0; color: #666;"><strong style="color: var(--primary-blue);">Agenda:</strong> Addressing human rights violations due to police and state intervention during protests and peaceful assemblies.</p>
+                            <div style="border-bottom: 1px solid #ddd; margin-top: 2rem;"></div>
+                        </div>
 
-                <div class="committee-card">
-                    <div class="committee-title">👑 International Press (IP)</div>
-                    <div class="committee-detail"><strong>Press Head:</strong> Seyan Nagpal</div>
+                        <div style="margin-bottom: 2rem;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong style="color: var(--primary-blue); font-size: 1.05rem;">3. United Nations Commission on the Status of Women (UNCSW)</strong></p>
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.95rem;"><strong style="color: var(--primary-blue);">Chair:</strong> Mr. Annsh H Gharrat</p>
+                            <p style="margin: 0; color: #666;"><strong style="color: var(--primary-blue);">Agenda:</strong> Strengthening global frameworks to prevent sexual exploitation and trafficking of women and girls, with emphasis on accountability and survivor-centric justice.</p>
+                            <div style="border-bottom: 1px solid #ddd; margin-top: 2rem;"></div>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong style="color: var(--primary-blue); font-size: 1.05rem;">4. Lok Sabha</strong></p>
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.95rem;"><strong style="color: var(--primary-blue);">Speaker:</strong> Mr. Suraj Subhash Tondaio<br><strong style="color: var(--primary-blue);">Deputy Speaker:</strong> Mr. Jainee Chauhan</p>
+                            <p style="margin: 0; color: #666;"><strong style="color: var(--primary-blue);">Agenda:</strong> National security and civil liberties — examination of sedition laws, UAPA, and preventive detention provisions.</p>
+                            <div style="border-bottom: 1px solid #ddd; margin-top: 2rem;"></div>
+                        </div>
+
+                        <div style="margin-bottom: 0;">
+                            <p style="margin: 0 0 0.75rem 0;"><strong style="color: var(--primary-blue); font-size: 1.05rem;">5. International Press (IP)</strong></p>
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.95rem;"><strong style="color: var(--primary-blue);">Chair:</strong> Mr. Vishnu Nair</p>
+                            <p style="margin: 0; color: #666;"><strong style="color: var(--primary-blue);">Agenda:</strong> Coverage and reporting of proceedings across all committees.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Registration Form -->
-            <section>
-                <h2 class="text-3xl font-bold mb-8 text-center">Delegate Registration Form</h2>
-
-                <form id="registrationForm" onsubmit="handleSubmit(event)" class="space-y-6">
-                    <!-- Personal Information -->
-                    <div class="form-section">
-                        <h3 class="text-xl font-bold text-[#003366] mb-6">Personal Information</h3>
-                        
-                        <label class="form-label required">Full Name</label>
-                        <input type="text" class="form-input" name="name" required>
-
-                        <label class="form-label required">Email Address</label>
-                        <input type="email" class="form-input" name="email" required>
-
-                        <label class="form-label required">Phone Number (WhatsApp)</label>
-                        <input type="tel" class="form-input" name="phone" required>
-
-                        <label class="form-label required">Academic Year / Grade</label>
-                        <input type="text" class="form-input" name="academic_year" placeholder="e.g., 2nd Year B.Tech" required>
-                    </div>
-
-                    <!-- Institute Information -->
-                    <div class="form-section">
-                        <h3 class="text-xl font-bold text-[#003366] mb-6">Institute & Delegation</h3>
-                        
-                        <label class="form-label required">Name of Your Institute</label>
-                        <input type="text" class="form-input" name="institute" required>
-
-                        <label class="form-label">Name of Delegation (if applicable)</label>
-                        <input type="text" class="form-input" name="delegation_name" placeholder="Leave blank if registering as individual">
-
-                        <label class="form-label">Name of Head Delegate (if delegation)</label>
-                        <input type="text" class="form-input" name="head_delegate" placeholder="Leave blank if individual">
-
-                        <label class="form-label">Upload ID Card (In-house delegates only)</label>
-                        <div class="info-card">
-                            <p class="font-semibold mb-2">📸 How to Submit Your ID Card Photo:</p>
-                            <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
-                                <li>Upload your ID card photo to <strong>Google Drive</strong></li>
-                                <li>Right-click on the file → Select <strong>"Share"</strong></li>
-                                <li>Change access to <strong>"Anyone with the link"</strong></li>
-                                <li>Copy the shareable link and paste it below</li>
-                            </ol>
-                        </div>
-                        <input type="url" class="form-input" name="id_card_link" placeholder="Paste Google Drive link here (e.g., https://drive.google.com/file/d/1abc...)" accept="image/*,.pdf">
-                    </div>
-
-                    <!-- MUN Experience -->
-                    <div class="form-section">
-                        <h3 class="text-xl font-bold text-[#003366] mb-6">MUN Experience</h3>
-                        
-                        <label class="form-label required">Years of MUN Experience</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="exp0" name="experience" value="0-5" required>
-                                <label for="exp0">0-5 years</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="exp5" name="experience" value="5-10">
-                                <label for="exp5">5-10 years</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="exp10" name="experience" value="10-15">
-                                <label for="exp10">10-15 years</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="exp15" name="experience" value="15-20">
-                                <label for="exp15">15-20 years</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="exp20" name="experience" value="20+">
-                                <label for="exp20">20+ years</label>
-                            </div>
-                        </div>
-
-                        <label class="form-label required">Describe Your MUN Experience</label>
-                        <textarea class="form-textarea" name="experience_description" rows="4" placeholder="Tell us about your MUN journey..." required></textarea>
-                    </div>
-
-                    <!-- Committee Preferences -->
-                    <div class="form-section">
-                        <h3 class="text-xl font-bold text-[#003366] mb-6">Committee Preferences</h3>
-                        
-                        <label class="form-label required">Committee Preference 1 (1st Choice)</label>
-                        <select class="form-select" name="committee_1" required>
-                            <option value="">-- Select Committee --</option>
-                            <option value="UNSC">United Nations Security Council (UNSC)</option>
-                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
-                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
-                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
-                            <option value="IP">International Press (IP)</option>
-                        </select>
-
-                        <label class="form-label required">Committee Preference 2 (2nd Choice)</label>
-                        <select class="form-select" name="committee_2" required>
-                            <option value="">-- Select Committee --</option>
-                            <option value="UNSC">United Nations Security Council (UNSC)</option>
-                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
-                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
-                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
-                            <option value="IP">International Press (IP)</option>
-                        </select>
-
-                        <label class="form-label required">Committee Preference 3 (3rd Choice)</label>
-                        <select class="form-select" name="committee_3" required>
-                            <option value="">-- Select Committee --</option>
-                            <option value="UNSC">United Nations Security Council (UNSC)</option>
-                            <option value="UNHRC">United Nations Human Rights Council (UNHRC)</option>
-                            <option value="AIPPM">All India Political Parties Meet (AIPPM)</option>
-                            <option value="ECOSOC">Economic and Social Council (ECOSOC)</option>
-                            <option value="IP">International Press (IP)</option>
-                        </select>
-                    </div>
-
-                    <!-- Payment Information -->
-                    <div class="form-section">
-                        <h3 class="text-xl font-bold text-[#003366] mb-6">Payment Information</h3>
-                        
-                        <div class="info-card">
-                            <p class="font-semibold mb-3">💳 Payment QR Code</p>
-                            <p class="text-sm text-gray-700 mb-3">Scan the QR code to complete payment. After payment, please provide the transaction ID below.</p>
-                            <div class="w-40 h-40 bg-gray-200 rounded-lg flex items-center justify-center">
-                                <p class="text-gray-500 text-center">QR Code Placeholder</p>
-                            </div>
-                        </div>
-
-                        <label class="form-label required">Payment Transaction ID</label>
-                        <input type="text" class="form-input" name="transaction_id" placeholder="e.g., UPI123456789" required>
-
-                        <label class="form-label required">Upload Payment Screenshot</label>
-                        <div class="info-card">
-                            <p class="font-semibold mb-2">💳 How to Submit Your Payment Proof:</p>
-                            <ol class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
-                                <li>Take a screenshot of your payment confirmation</li>
-                                <li>Upload the screenshot to <strong>Google Drive</strong></li>
-                                <li>Right-click on the file → Select <strong>"Share"</strong></li>
-                                <li>Change access to <strong>"Anyone with the link"</strong></li>
-                                <li>Copy the shareable link and paste it below</li>
-                            </ol>
-                        </div>
-                        <input type="url" class="form-input" name="payment_screenshot_link" placeholder="Paste Google Drive link here (e.g., https://drive.google.com/file/d/1abc...)" required>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="flex gap-4">
-                        <button type="submit" class="btn-primary w-full md:w-auto text-center">
-                            Submit Registration
-                        </button>
-                        <button type="reset" class="px-8 py-3 border-2 border-[#003366] text-[#003366] font-bold uppercase tracking-wide hover:bg-[#003366] hover:text-white transition-all w-full md:w-auto">
-                            Clear Form
-                        </button>
-                    </div>
-
-                    <p class="text-sm text-gray-500 mt-4">
-                        By submitting this form, you agree to the terms and conditions of RAIT-MUN 2026.
-                    </p>
-                </form>
-            </section>
-
-            <!-- Contact Information -->
-            <section class="mt-12 bg-[#f5f5f5] rounded-lg p-8 text-center">
-                <h3 class="text-2xl font-bold mb-6">Questions? Get in Touch</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <p class="font-semibold text-[#003366] mb-2">Secretary General</p>
-                        <p class="text-gray-700">Dhruthi Vijayanand</p>
-                        <p class="text-[#003366] font-bold">+91 8169703035</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-[#003366] mb-2">Director General</p>
-                        <p class="text-gray-700">Malik Ahmad Khan</p>
-                        <p class="text-[#003366] font-bold">+91 7275993319</p>
-                    </div>
-                </div>
-                <div class="mt-6">
-                    <p class="font-semibold text-[#003366] mb-2">Email</p>
-                    <a href="mailto:shlokchauhan190506@gmail.com" class="text-[#8B1538] font-bold hover:underline">shlokchauhan190506@gmail.com</a>
+            <!-- Stay Connected -->
+            <section class="content-section">
+                <h3><svg class="icon-inline" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Stay Connected</h3>
+                <div class="award-list">
+                    <li><strong>Instagram:</strong> <a href="#" style="color: #D4A017; text-decoration: none; font-weight: 600;">@lokneeti_ssbas</a></li>
+                    <li><strong>Conference Website:</strong> Visit our main page for more details</li>
+                    <li><strong>Conference Matrices:</strong> <a href="all_matrices.html" style="color: #D4A017; text-decoration: none; font-weight: 600;">View all committee matrices</a></li>
                 </div>
             </section>
+
+
+            <!-- CTA Button -->
+            <div class="cta-button text-center">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFypWDIgytQEBeZoqupGXNse4Z3w8eescj6fLAQ_1OuCGJlA/viewform?usp=dialog" target="_blank" class="btn-primary" style="font-size: 1.25rem; padding: 1rem 3rem; display: inline-block;">
+                    <svg class="icon-inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Register Now
+                </a>
+                <p style="color: #666; font-size: 0.95rem; margin-top: 1rem;">Click above to open the registration form in a new window</p>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#1a1a1a] text-white mt-20">
-        <div class="max-w-7xl mx-auto px-6 py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2026 LOKNITI RAIT-MUN. All rights reserved.</p>
+    <footer class="bg-[#1a1a1a] text-white">
+        <!-- Top Footer -->
+        <div class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="https://ssbas.somaiya.edu/assets/ssbas/img/home/ssbas.svg" alt="Somaiya Vidyavihar" class="h-12 w-auto bg-white p-1 rounded">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Empowering the next generation of global leaders through diplomacy, debate, and dialogue.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">Our Mission</a></li>
+                        <li><a href="index.html#committees" class="text-gray-300 hover:text-white transition-colors">Committees</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get Involved -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Get Involved</h4>
+                    <ul class="space-y-3">
+                        <li><a href="register.html" class="text-gray-300 hover:text-white transition-colors">Apply as Delegate</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Apply as Chair</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Partner With Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Volunteer</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold text-sm tracking-widest uppercase mb-6 text-[#FFB81C]">Contact Us</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p>Sakerben Auditorium, Somaiya Vidyavihar University</p>
+                        <p>lokneeti.somaiya@gmail.com</p>
+                        <div class="flex space-x-4 mt-6">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.2-4.358 2.618-6.78 6.98-6.98.1 0 .2 0 .3-.001zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#003366] transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>© 2026 LOKNEETI MUN. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-[#D4A017] transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#D4A017] transition-colors">Terms of Use</a>
-                    <a href="index.html" class="hover:text-[#D4A017] transition-colors">Back to Home</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
                 </div>
             </div>
         </div>
