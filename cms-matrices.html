@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices CMS | Lokneeti MUN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --primary-dark: #1a1a1a;
+            --accent-yellow: #D4A017;
+            --accent-teal: #8B1538;
+            --accent-orange: #C41E3A;
+            --accent-purple: #6B3FA0;
+            --light-gray: #f5f5f5;
+            --text-gray: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--primary-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .cms-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .controls-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .controls-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 5px rgba(212, 160, 23, 0.3);
+        }
+
+        .color-picker-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-option:hover {
+            border-color: var(--accent-yellow);
+            background: #f9f9f9;
+        }
+
+        .color-option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .color-swatch {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b38a12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+        }
+
+        .btn-danger {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #a01830;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1e8449;
+            transform: translateY(-2px);
+        }
+
+        .matrices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .matrix-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .matrix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .matrix-color-header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .matrix-card-body {
+            padding: 20px;
+        }
+
+        .matrix-card-body h3 {
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+        }
+
+        .matrix-card-body p {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .matrix-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .matrix-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .matrix-actions .btn {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
+        .table-view {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .table-view table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-view thead {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .table-view th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table-view td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table-view tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .color-badge {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .view-toggle button {
+            padding: 10px 20px;
+            border: 2px solid var(--accent-yellow);
+            background: white;
+            color: var(--accent-yellow);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .view-toggle button.active {
+            background: var(--accent-yellow);
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .success-message,
+        .error-message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message.show,
+        .error-message.show {
+            display: block;
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 12px 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-gray);
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-yellow);
+            border-bottom-color: var(--accent-yellow);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .matrix-viewer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .matrix-viewer h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .matrix-viewer table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .matrix-viewer th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .matrix-viewer td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+        }
+
+        .matrix-viewer tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .edit-cell {
+            display: flex;
+            gap: 5px;
+        }
+
+        .edit-cell input {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .edit-cell button {
+            padding: 6px 10px;
+            background: var(--accent-yellow);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .row-actions button {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .row-actions .btn-edit {
+            background: var(--accent-yellow);
+            color: white;
+        }
+
+        .row-actions .btn-delete {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .add-row-form {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .add-row-form h4 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-row input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .highlight-panel {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+        }
+
+        .highlight-panel h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .selected-rows-list {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            min-height: 30px;
+        }
+
+        .selected-row-tag {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .selected-row-tag button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .color-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .color-highlight-option {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .color-highlight-option:hover {
+            border-color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+
+        .color-highlight-option.selected {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 8px rgba(212, 160, 23, 0.5);
+        }
+
+        .highlight-color-swatch {
+            width: 100%;
+            height: 30px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+
+        .matrix-viewer tbody tr.highlighted {
+            background-color: #fff3cd !important;
+        }
+
+        .matrix-viewer tbody tr.row-selected {
+            background-color: #e8f4f8 !important;
+            border-left: 4px solid var(--accent-yellow);
+        }
+
+        @media (max-width: 768px) {
+            .cms-container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .matrices-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-view {
+                overflow-x: auto;
+            }
+
+            .tab-btn {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cms-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Matrices Management CMS</h1>
+            <p>Create, edit, and organize all matrices with custom color highlighting</p>
+        </div>
+
+        <!-- Messages -->
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- Statistics -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalMatrices">0</div>
+                <div class="stat-label">Total Matrices</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalColors">8</div>
+                <div class="stat-label">Available Colors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="recentEdits">0</div>
+                <div class="stat-label">Recent Edits</div>
+            </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('create')">Create New</button>
+            <button class="tab-btn" onclick="switchTab('manage')">Manage Matrices</button>
+            <button class="tab-btn" onclick="switchTab('import')">Import Existing</button>
+            <button class="tab-btn" onclick="switchTab('colors')">Color Settings</button>
+        </div>
+
+        <!-- Tab: Create New Matrix -->
+        <div class="tab-content active" id="create-tab">
+            <div class="controls-panel">
+                <h2>Create New Matrix</h2>
+
+                <div class="form-group">
+                    <label for="matrixName">Matrix Name *</label>
+                    <input type="text" id="matrixName" placeholder="e.g., Countries Economic Status">
+                </div>
+
+                <div class="form-group">
+                    <label for="matrixDescription">Description</label>
+                    <textarea id="matrixDescription" placeholder="Enter matrix description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Color Highlight</label>
+                    <div class="color-picker-group" id="colorPicker">
+                        <!-- Colors will be dynamically populated -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="matrixCategory">Category</label>
+                    <select id="matrixCategory">
+                        <option value="">-- Select Category --</option>
+                        <option value="economic">Economic</option>
+                        <option value="political">Political</option>
+                        <option value="social">Social</option>
+                        <option value="environmental">Environmental</option>
+                        <option value="security">Security</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="matrixData">Matrix Content (JSON)</label>
+                    <textarea id="matrixData" placeholder='{"headers": [], "rows": []}' style="font-family: 'Courier New', monospace;"></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="createMatrix()">Create Matrix</button>
+                    <button class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Manage Matrices -->
+        <div class="tab-content" id="manage-tab">
+            <div class="controls-panel">
+                <h2>Manage Matrices</h2>
+
+                <div class="view-toggle">
+                    <button class="toggle-btn active" onclick="toggleView('grid')">Grid View</button>
+                    <button class="toggle-btn" onclick="toggleView('table')">Table View</button>
+                </div>
+
+                <!-- Grid View -->
+                <div id="grid-view">
+                    <div class="matrices-grid" id="matricesGrid">
+                        <!-- Matrices cards will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Table View -->
+                <div id="table-view" style="display: none;">
+                    <div class="table-view">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;"></th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="matricesTable">
+                                <!-- Table rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Import Existing Matrices -->
+        <div class="tab-content" id="import-tab">
+            <div class="controls-panel">
+                <h2>Import Existing Matrices</h2>
+                <p style="margin-bottom: 20px; color: var(--text-gray);">Import matrices from the existing all_matrices.html file and assign colors for highlighting</p>
+
+                <div id="existingMatricesList">
+                    <!-- Existing matrices will be populated here -->
+                </div>
+
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button class="btn btn-secondary" onclick="importAllMatrices()">Import All Matrices</button>
+                    <button class="btn btn-primary" onclick="loadExistingMatrices()">Refresh List</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Color Settings -->
+        <div class="tab-content" id="colors-tab">
+            <div class="controls-panel">
+                <h2>Color Management</h2>
+                <p style="margin-bottom: 20px; color: var(--text-gray);">Configure colors for matrix highlighting</p>
+
+                <div id="colorsList">
+                    <!-- Colors will be populated here -->
+                </div>
+
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button class="btn btn-secondary" onclick="addNewColor()">+ Add New Color</button>
+                    <button class="btn btn-primary" onclick="exportColors()">Export Colors</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">Edit Matrix</div>
+
+            <div class="form-group">
+                <label for="editMatrixName">Matrix Name</label>
+                <input type="text" id="editMatrixName">
+            </div>
+
+            <div class="form-group">
+                <label for="editMatrixDescription">Description</label>
+                <textarea id="editMatrixDescription"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Color Highlight</label>
+                <div class="color-picker-group" id="editColorPicker">
+                    <!-- Colors will be populated -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="editMatrixCategory">Category</label>
+                <select id="editMatrixCategory">
+                    <option value="">-- Select Category --</option>
+                    <option value="economic">Economic</option>
+                    <option value="political">Political</option>
+                    <option value="social">Social</option>
+                    <option value="environmental">Environmental</option>
+                    <option value="security">Security</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="editMatrixData">Matrix Content (JSON)</label>
+                <textarea id="editMatrixData" style="font-family: 'Courier New', monospace;"></textarea>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="saveMatrixEdits()">Save Changes</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Matrix Modal -->
+    <div class="modal" id="viewMatrixModal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <button class="modal-close" onclick="closeViewModal()">&times;</button>
+            <div class="modal-header">View & Edit Matrix Data</div>
+            
+            <div id="matrixViewContainer">
+                <!-- Matrix data will be displayed here -->
+            </div>
+
+            <div class="btn-group" style="margin-top: 20px;">
+                <button class="btn btn-primary" onclick="saveMatrixData()">Save Data</button>
+                <button class="btn btn-secondary" onclick="editMatrixMetadata()">Edit Metadata</button>
+                <button class="btn btn-secondary" onclick="closeViewModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Predefined existing matrices from all_matrices.html with actual data
+        const existingMatricesData = [
+            {
+                name: 'United Nations Security Council (UNSC)',
+                description: 'Permanent members, non-permanent members, and observers of the UNSC',
+                category: 'security',
+                headers: ['Sr. No', 'Diplomatic Representative', 'Status', 'Regional Group'],
+                data: [
+                    ['1', "People's Republic of China", 'Permanent Member', 'Asia-Pacific'],
+                    ['2', 'French Republic', 'Permanent Member', 'Western Europe and Others Group (WEOG)'],
+                    ['3', 'United Kingdom of Great Britain and Northern Ireland', 'Permanent Member', 'Western Europe and Others Group (WEOG)'],
+                    ['4', 'United States of America', 'Permanent Member', 'Western Europe and Others Group (WEOG)'],
+                    ['5', 'Russian Federation', 'Permanent Member', 'Eastern European Group'],
+                    ['6', 'Kingdom of Bahrain', 'Non-Permanent Member', 'Asia-Pacific'],
+                    ['7', 'Islamic Republic of Pakistan', 'Non-Permanent Member', 'Asia-Pacific'],
+                    ['8', 'Republic of Colombia', 'Non-Permanent Member', 'Latin American and Caribbean Group (GRULAC)'],
+                    ['9', 'Republic of Panama', 'Non-Permanent Member', 'Latin American and Caribbean Group (GRULAC)'],
+                    ['10', 'Hellenic Republic', 'Non-Permanent Member', 'Western Europe and Others Group (WEOG)'],
+                ]
+            },
+            {
+                name: 'United Nations Human Rights Council (UNHRC)',
+                description: 'Member countries of the UNHRC representing various regions',
+                category: 'political',
+                headers: ['Sr. No', 'Country'],
+                data: [
+                    ['1', 'Argentina'],
+                    ['2', 'Australia'],
+                    ['3', 'Austria'],
+                    ['4', 'Belgium'],
+                    ['5', 'Bolivia'],
+                    ['6', 'Brazil'],
+                    ['7', 'Canada'],
+                    ['8', 'Chile'],
+                    ['9', 'China'],
+                    ['10', 'Colombia'],
+                ]
+            },
+            {
+                name: 'United Nations Commission on the Status of Women (UNCSW)',
+                description: 'Countries participating in the UNCSW',
+                category: 'social',
+                headers: ['Sr. No', 'Country'],
+                data: [
+                    ['1', 'Saudi Arabia'],
+                    ['2', 'Iran'],
+                    ['3', 'Iraq'],
+                    ['4', 'Lebanon'],
+                    ['5', 'Egypt'],
+                    ['6', 'Tunisia'],
+                    ['7', 'Morocco'],
+                    ['8', 'Jordan'],
+                    ['9', 'United Arab Emirates'],
+                    ['10', 'Qatar'],
+                ]
+            },
+            {
+                name: 'Lok Sabha',
+                description: 'Indian Parliamentary members and their political affiliations',
+                category: 'political',
+                headers: ['Sr. No', 'Portfolio', 'Political Party'],
+                data: [
+                    ['1', 'Narendra Modi', 'BJP'],
+                    ['2', 'Amit Shah', 'BJP'],
+                    ['3', 'J P Nadda', 'BJP'],
+                    ['4', 'Nitin Gadkari', 'BJP'],
+                    ['5', 'Nirmala Sitaraman', 'BJP'],
+                    ['6', 'Arjun Ram Meghwal', 'BJP'],
+                    ['7', 'Kiren Rijiju', 'BJP'],
+                    ['8', 'Ashwini Vaishnav', 'BJP'],
+                    ['9', 'Piyush Goyal', 'BJP'],
+                    ['10', 'Rajnath Singh', 'BJP'],
+                ]
+            }
+        ];
+
+        // Initialize storage
+        let matrices = JSON.parse(localStorage.getItem('matrices')) || [];
+        let colors = JSON.parse(localStorage.getItem('matrixColors')) || [
+            { id: 1, name: 'Gold', hex: '#D4A017', category: 'primary' },
+            { id: 2, name: 'Navy Blue', hex: '#003366', category: 'primary' },
+            { id: 3, name: 'Maroon', hex: '#8B1538', category: 'primary' },
+            { id: 4, name: 'Orange', hex: '#C41E3A', category: 'primary' },
+            { id: 5, name: 'Purple', hex: '#6B3FA0', category: 'secondary' },
+            { id: 6, name: 'Teal', hex: '#008080', category: 'secondary' },
+            { id: 7, name: 'Forest Green', hex: '#2D5016', category: 'secondary' },
+            { id: 8, name: 'Slate Gray', hex: '#708090', category: 'secondary' }
+        ];
+
+        let currentEditId = null;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeColorPicker();
+            renderMatrices();
+            loadExistingMatrices();
+            updateStats();
+        });
+
+        function loadExistingMatrices() {
+            const container = document.getElementById('existingMatricesList');
+            container.innerHTML = '';
+
+            existingMatricesData.forEach((matrix, index) => {
+                const isImported = matrices.some(m => m.name === matrix.name);
+                const card = document.createElement('div');
+                card.style.cssText = 'background: white; padding: 20px; border-radius: 4px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);';
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <h3 style="font-weight: 600; color: #333; margin-bottom: 5px; font-size: 1.1rem;">${matrix.name}</h3>
+                            <p style="color: var(--text-gray); margin-bottom: 10px;">${matrix.description}</p>
+                            <div style="display: flex; gap: 20px; font-size: 0.9rem; color: #999;">
+                                <span>📁 ${matrix.category}</span>
+                                <span>📊 ${matrix.rows} entries</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-direction: column; align-items: flex-end;">
+                            ${isImported ? `
+                                <span style="background: #27ae60; color: white; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">✓ Imported</span>
+                            ` : `
+                                <select class="color-select-${index}" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">
+                                    <option value="">-- Select Color --</option>
+                                    ${colors.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+                                </select>
+                                <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 0.85rem;" onclick="importSingleMatrix(${index})">Import with Color</button>
+                            `}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function importSingleMatrix(index) {
+            const selectElement = document.querySelector(`.color-select-${index}`);
+            const colorId = parseInt(selectElement.value);
+
+            if (!colorId) {
+                showError('Please select a color for this matrix');
+                return;
+            }
+
+            const matrix = existingMatricesData[index];
+            const newMatrix = {
+                id: Date.now(),
+                name: matrix.name,
+                description: matrix.description,
+                colorId: colorId,
+                category: matrix.category,
+                data: {
+                    headers: matrix.headers || [],
+                    rows: matrix.data || []
+                },
+                created: new Date().toLocaleDateString(),
+                updated: new Date().toLocaleDateString(),
+                imported: true
+            };
+
+            matrices.push(newMatrix);
+            localStorage.setItem('matrices', JSON.stringify(matrices));
+            
+            showSuccess(`"${matrix.name}" imported successfully with color!`);
+            updateStats();
+            renderMatrices();
+            loadExistingMatrices();
+        }
+
+        function importAllMatrices() {
+            if (confirm('This will import all existing matrices with default colors. Continue?')) {
+                let importCount = 0;
+                const defaultColorIds = [1, 2, 3, 4];
+
+                existingMatricesData.forEach((matrix, index) => {
+                    if (!matrices.some(m => m.name === matrix.name)) {
+                        const newMatrix = {
+                            id: Date.now() + index,
+                            name: matrix.name,
+                            description: matrix.description,
+                            colorId: defaultColorIds[index % defaultColorIds.length],
+                            category: matrix.category,
+                            data: {
+                                headers: matrix.headers || [],
+                                rows: matrix.data || []
+                            },
+                            created: new Date().toLocaleDateString(),
+                            updated: new Date().toLocaleDateString(),
+                            imported: true
+                        };
+                        matrices.push(newMatrix);
+                        importCount++;
+                    }
+                });
+
+                localStorage.setItem('matrices', JSON.stringify(matrices));
+                showSuccess(`${importCount} matrices imported successfully!`);
+                updateStats();
+                renderMatrices();
+                loadExistingMatrices();
+            }
+        }
+
+        function initializeColorPicker() {
+            const picker = document.getElementById('colorPicker');
+            const editPicker = document.getElementById('editColorPicker');
+            picker.innerHTML = '';
+            editPicker.innerHTML = '';
+
+            colors.forEach(color => {
+                // Main form color picker
+                const colorOption = document.createElement('label');
+                colorOption.className = 'color-option';
+                colorOption.innerHTML = `
+                    <input type="radio" name="selectedColor" value="${color.id}" ${color.id === 1 ? 'checked' : ''}>
+                    <div class="color-swatch" style="background-color: ${color.hex};"></div>
+                    <span class="color-name">${color.name}</span>
+                `;
+                picker.appendChild(colorOption);
+
+                // Edit form color picker
+                const editColorOption = document.createElement('label');
+                editColorOption.className = 'color-option';
+                editColorOption.innerHTML = `
+                    <input type="radio" name="editSelectedColor" value="${color.id}">
+                    <div class="color-swatch" style="background-color: ${color.hex};"></div>
+                    <span class="color-name">${color.name}</span>
+                `;
+                editPicker.appendChild(editColorOption);
+            });
+
+            renderColorSettings();
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function createMatrix() {
+            const name = document.getElementById('matrixName').value.trim();
+            const description = document.getElementById('matrixDescription').value.trim();
+            const colorId = parseInt(document.querySelector('input[name="selectedColor"]:checked').value);
+            const category = document.getElementById('matrixCategory').value;
+            const data = document.getElementById('matrixData').value.trim();
+
+            if (!name) {
+                showError('Matrix name is required');
+                return;
+            }
+
+            try {
+                const parsedData = data ? JSON.parse(data) : { headers: [], rows: [] };
+
+                const newMatrix = {
+                    id: Date.now(),
+                    name,
+                    description,
+                    colorId,
+                    category,
+                    data: parsedData,
+                    created: new Date().toLocaleDateString(),
+                    updated: new Date().toLocaleDateString()
+                };
+
+                matrices.push(newMatrix);
+                localStorage.setItem('matrices', JSON.stringify(matrices));
+                
+                showSuccess('Matrix created successfully!');
+                resetForm();
+                updateStats();
+                renderMatrices();
+
+                // Switch to manage tab
+                document.getElementById('manage-tab').classList.add('active');
+                document.getElementById('create-tab').classList.remove('active');
+            } catch (e) {
+                showError('Invalid JSON format for matrix data');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('matrixName').value = '';
+            document.getElementById('matrixDescription').value = '';
+            document.getElementById('matrixCategory').value = '';
+            document.getElementById('matrixData').value = '';
+        }
+
+        function renderMatrices() {
+            renderGridView();
+            renderTableView();
+        }
+
+        function renderGridView() {
+            const grid = document.getElementById('matricesGrid');
+            grid.innerHTML = '';
+
+            matrices.forEach(matrix => {
+                const color = colors.find(c => c.id === matrix.colorId) || colors[0];
+                const card = document.createElement('div');
+                card.className = 'matrix-card';
+                card.innerHTML = `
+                    <div class="matrix-color-header" style="background-color: ${color.hex};">
+                        ${color.name}
+                    </div>
+                    <div class="matrix-card-body">
+                        <h3>${matrix.name}</h3>
+                        <p>${matrix.description || 'No description provided'}</p>
+                        <div class="matrix-meta">
+                            <span>📁 ${matrix.category || 'Uncategorized'}</span>
+                            <span>📅 ${matrix.created}</span>
+                        </div>
+                        <div class="matrix-actions">
+                            <button class="btn btn-secondary" onclick="viewMatrix(${matrix.id})">View/Edit</button>
+                            <button class="btn btn-danger" onclick="deleteMatrix(${matrix.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (matrices.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">No matrices yet. Create one to get started!</p>';
+            }
+        }
+
+        function renderTableView() {
+            const tbody = document.getElementById('matricesTable');
+            tbody.innerHTML = '';
+
+            matrices.forEach(matrix => {
+                const color = colors.find(c => c.id === matrix.colorId) || colors[0];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><div class="color-swatch" style="background-color: ${color.hex};"></div></td>
+                    <td><strong>${matrix.name}</strong></td>
+                    <td>${matrix.category || '-'}</td>
+                    <td>${matrix.description || '-'}</td>
+                    <td>${matrix.created}</td>
+                    <td>
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="editMatrix(${matrix.id})">Edit</button>
+                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.85rem;" onclick="deleteMatrix(${matrix.id})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            if (matrices.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #999;">No matrices yet.</td></tr>';
+            }
+        }
+
+        function editMatrix(id) {
+            currentEditId = id;
+            const matrix = matrices.find(m => m.id === id);
+            if (!matrix) return;
+
+            document.getElementById('editMatrixName').value = matrix.name;
+            document.getElementById('editMatrixDescription').value = matrix.description;
+            document.getElementById('editMatrixCategory').value = matrix.category;
+            document.getElementById('editMatrixData').value = JSON.stringify(matrix.data, null, 2);
+            
+            const colorRadio = document.querySelector(`input[name="editSelectedColor"][value="${matrix.colorId}"]`);
+            if (colorRadio) colorRadio.checked = true;
+
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function saveMatrixEdits() {
+            const matrix = matrices.find(m => m.id === currentEditId);
+            if (!matrix) return;
+
+            const name = document.getElementById('editMatrixName').value.trim();
+            const description = document.getElementById('editMatrixDescription').value.trim();
+            const colorId = parseInt(document.querySelector('input[name="editSelectedColor"]:checked').value);
+            const category = document.getElementById('editMatrixCategory').value;
+            const data = document.getElementById('editMatrixData').value.trim();
+
+            if (!name) {
+                showError('Matrix name is required');
+                return;
+            }
+
+            try {
+                const parsedData = data ? JSON.parse(data) : { headers: [], rows: [] };
+
+                matrix.name = name;
+                matrix.description = description;
+                matrix.colorId = colorId;
+                matrix.category = category;
+                matrix.data = parsedData;
+                matrix.updated = new Date().toLocaleDateString();
+
+                localStorage.setItem('matrices', JSON.stringify(matrices));
+                showSuccess('Matrix updated successfully!');
+                closeModal();
+                renderMatrices();
+                updateStats();
+            } catch (e) {
+                showError('Invalid JSON format');
+            }
+        }
+
+        function deleteMatrix(id) {
+            if (confirm('Are you sure you want to delete this matrix?')) {
+                matrices = matrices.filter(m => m.id !== id);
+                localStorage.setItem('matrices', JSON.stringify(matrices));
+                showSuccess('Matrix deleted successfully!');
+                renderMatrices();
+                updateStats();
+            }
+        }
+
+        function viewMatrix(id) {
+            const matrix = matrices.find(m => m.id === id);
+            if (!matrix) return;
+
+            currentEditId = id;
+            const container = document.getElementById('matrixViewContainer');
+            
+            // Initialize row colors if not present
+            if (!matrix.rowColors) {
+                matrix.rowColors = {};
+            }
+            
+            // Build table HTML
+            let tableHTML = `<div class="matrix-viewer">
+                <h3>${matrix.name}</h3>
+                <p style="color: var(--text-gray); margin-bottom: 15px;">${matrix.description || 'No description'}</p>
+                
+                <!-- Highlight Panel -->
+                <div class="highlight-panel">
+                    <h4>🎨 Highlight Rows with Color</h4>
+                    <div style="margin-bottom: 10px; font-size: 0.9rem; color: #666;">
+                        <strong>Step 1:</strong> Click on rows to select them<br>
+                        <strong>Step 2:</strong> Choose a color and click "Apply Color"
+                    </div>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <strong style="color: #333;">Selected Rows:</strong>
+                        <div class="selected-rows-list" id="selectedRowsList">
+                            <span style="color: #999; font-size: 0.9rem;">Click on table rows to select</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <strong style="display: block; margin-bottom: 10px; color: #333;">Choose Color:</strong>
+                        <div class="color-highlight-grid" id="colorHighlightOptions">
+                            ${colors.map(color => `
+                                <div class="color-highlight-option" data-color-id="${color.id}" onclick="selectHighlightColor(${color.id}, event)">
+                                    <div class="highlight-color-swatch" style="background-color: ${color.hex};"></div>
+                                    <div style="font-size: 0.8rem;">${color.name}</div>
+                                </div>
+                            `).join('')}
+                            <div class="color-highlight-option" data-color-id="none" onclick="selectHighlightColor('none', event)">
+                                <div class="highlight-color-swatch" style="background-color: #ffffff; border: 2px solid #ddd;"></div>
+                                <div style="font-size: 0.8rem;">None</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                        <button class="btn btn-primary" style="padding: 10px;" onclick="applyRowColor()">Apply Color</button>
+                        <button class="btn btn-secondary" style="padding: 10px;" onclick="clearSelectedRows()">Clear Selection</button>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;"><input type="checkbox" id="selectAllRows" onchange="toggleSelectAllRows(event)"></th>`;
+            
+            // Add headers
+            if (matrix.data && matrix.data.headers && matrix.data.headers.length > 0) {
+                matrix.data.headers.forEach(header => {
+                    tableHTML += `<th>${header}</th>`;
+                });
+            } else {
+                tableHTML += `<th>Column 1</th><th>Column 2</th><th>Column 3</th>`;
+            }
+            
+            tableHTML += `<th style="width: 80px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrixTableBody">`;
+            
+            // Add data rows
+            if (matrix.data && matrix.data.rows && Array.isArray(matrix.data.rows)) {
+                matrix.data.rows.forEach((row, idx) => {
+                    const rowColor = matrix.rowColors[idx];
+                    const colorStyle = rowColor && rowColor !== 'none' ? 
+                        `style="background-color: ${rowColor};"` : '';
+                    
+                    tableHTML += `<tr id="row-${idx}" class="matrix-row" ${colorStyle}>
+                        <td><input type="checkbox" class="row-checkbox" data-row="${idx}" onchange="updateSelectedRowsList()"></td>`;
+                    
+                    if (Array.isArray(row)) {
+                        row.forEach((cell, cellIdx) => {
+                            tableHTML += `<td><input type="text" value="${cell || ''}" data-row="${idx}" data-col="${cellIdx}" class="matrix-cell" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px;"></td>`;
+                        });
+                    } else {
+                        tableHTML += `<td><input type="text" value="${row || ''}" data-row="${idx}" data-col="0" class="matrix-cell" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px;"></td>`;
+                    }
+                    tableHTML += `<td style="text-align: center;"><button class="btn btn-danger" style="padding: 4px 8px; font-size: 0.75rem;" onclick="deleteRow(${idx})">Delete</button></td></tr>`;
+                });
+            }
+            
+            tableHTML += `</tbody>
+                </table>
+                
+                <div class="add-row-form">
+                    <h4>Add New Row</h4>
+                    <div class="form-row" id="newRowInputs">
+                        <input type="text" placeholder="Column 1" class="new-row-cell">
+                        <input type="text" placeholder="Column 2" class="new-row-cell">
+                        <input type="text" placeholder="Column 3" class="new-row-cell">
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="addNewRow()">+ Add Row</button>
+                </div>
+            </div>`;
+            
+            container.innerHTML = tableHTML;
+            document.getElementById('viewMatrixModal').classList.add('show');
+        }
+
+        function saveMatrixData() {
+            const matrix = matrices.find(m => m.id === currentEditId);
+            if (!matrix) return;
+
+            // Collect all cell values
+            const cells = document.querySelectorAll('.matrix-cell');
+            const newRows = [];
+            
+            cells.forEach(cell => {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                
+                if (!newRows[row]) newRows[row] = [];
+                newRows[row][col] = cell.value || '';
+            });
+
+            matrix.data.rows = newRows.filter(row => row !== undefined);
+            matrix.updated = new Date().toLocaleDateString();
+            
+            // Cleanup row colors for deleted rows
+            const maxRowIdx = matrix.data.rows.length;
+            Object.keys(matrix.rowColors || {}).forEach(rowIdx => {
+                if (parseInt(rowIdx) >= maxRowIdx) {
+                    delete matrix.rowColors[parseInt(rowIdx)];
+                }
+            });
+            
+            localStorage.setItem('matrices', JSON.stringify(matrices));
+            showSuccess('Matrix data and colors saved successfully!');
+            closeViewModal();
+            renderMatrices();
+        }
+
+        function deleteRow(rowIndex) {
+            if (confirm('Delete this row?')) {
+                const matrix = matrices.find(m => m.id === currentEditId);
+                if (matrix && matrix.data.rows) {
+                    matrix.data.rows.splice(rowIndex, 1);
+                    viewMatrix(currentEditId); // Refresh the view
+                }
+            }
+        }
+
+        function addNewRow() {
+            const inputs = document.querySelectorAll('.new-row-cell');
+            const newRow = Array.from(inputs).map(input => input.value || '');
+            
+            if (newRow.every(cell => cell === '')) {
+                showError('Please enter at least one value');
+                return;
+            }
+
+            const matrix = matrices.find(m => m.id === currentEditId);
+            if (matrix && matrix.data) {
+                if (!matrix.data.rows) matrix.data.rows = [];
+                matrix.data.rows.push(newRow);
+                
+                // Clear inputs and refresh
+                inputs.forEach(input => input.value = '');
+                viewMatrix(currentEditId);
+            }
+        }
+
+        function editMatrixMetadata() {
+            const matrix = matrices.find(m => m.id === currentEditId);
+            if (!matrix) return;
+
+            document.getElementById('editMatrixName').value = matrix.name;
+            document.getElementById('editMatrixDescription').value = matrix.description;
+            document.getElementById('editMatrixCategory').value = matrix.category;
+            document.getElementById('editMatrixData').value = JSON.stringify(matrix.data, null, 2);
+            
+            const colorRadio = document.querySelector(`input[name="editSelectedColor"][value="${matrix.colorId}"]`);
+            if (colorRadio) colorRadio.checked = true;
+
+            closeViewModal();
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewMatrixModal').classList.remove('show');
+            currentEditId = null;
+        }
+
+        let selectedRows = new Set();
+        let selectedColorId = null;
+
+        function updateSelectedRowsList() {
+            selectedRows.clear();
+            document.querySelectorAll('.row-checkbox:checked').forEach(checkbox => {
+                selectedRows.add(parseInt(checkbox.dataset.row));
+            });
+
+            const listContainer = document.getElementById('selectedRowsList');
+            if (selectedRows.size === 0) {
+                listContainer.innerHTML = '<span style="color: #999; font-size: 0.9rem;">Click on table rows to select</span>';
+            } else {
+                listContainer.innerHTML = Array.from(selectedRows)
+                    .sort((a, b) => a - b)
+                    .map(rowIdx => `<span class="selected-row-tag">Row ${rowIdx + 1} <button onclick="toggleRow(${rowIdx})">×</button></span>`)
+                    .join('');
+            }
+        }
+
+        function toggleRow(rowIdx) {
+            const checkbox = document.querySelector(`input[data-row="${rowIdx}"]`);
+            checkbox.checked = !checkbox.checked;
+            updateSelectedRowsList();
+        }
+
+        function toggleSelectAllRows(event) {
+            document.querySelectorAll('.row-checkbox').forEach(checkbox => {
+                checkbox.checked = event.target.checked;
+            });
+            updateSelectedRowsList();
+        }
+
+        function selectHighlightColor(colorId, event) {
+            // Remove previous selection
+            document.querySelectorAll('.color-highlight-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark new selection
+            event.currentTarget.classList.add('selected');
+            selectedColorId = colorId;
+        }
+
+        function applyRowColor() {
+            if (selectedRows.size === 0) {
+                showError('Please select rows first');
+                return;
+            }
+
+            if (!selectedColorId) {
+                showError('Please select a color');
+                return;
+            }
+
+            const matrix = matrices.find(m => m.id === currentEditId);
+            if (!matrix) return;
+
+            if (!matrix.rowColors) {
+                matrix.rowColors = {};
+            }
+
+            let colorHex = selectedColorId === 'none' ? 'none' : colors.find(c => c.id === selectedColorId)?.hex || 'none';
+
+            selectedRows.forEach(rowIdx => {
+                matrix.rowColors[rowIdx] = colorHex;
+                
+                // Update UI immediately
+                const row = document.getElementById(`row-${rowIdx}`);
+                if (row) {
+                    if (colorHex === 'none') {
+                        row.style.backgroundColor = '';
+                    } else {
+                        row.style.backgroundColor = colorHex;
+                    }
+                }
+            });
+
+            showSuccess(`Color applied to ${selectedRows.size} row(s)`);
+            clearSelectedRows();
+        }
+
+        function clearSelectedRows() {
+            document.querySelectorAll('.row-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            selectedRows.clear();
+            updateSelectedRowsList();
+            
+            // Clear color selection
+            document.querySelectorAll('.color-highlight-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            selectedColorId = null;
+        }
+
+        function toggleView(view) {
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (view === 'grid') {
+                document.getElementById('grid-view').style.display = 'block';
+                document.getElementById('table-view').style.display = 'none';
+            } else {
+                document.getElementById('grid-view').style.display = 'none';
+                document.getElementById('table-view').style.display = 'block';
+            }
+        }
+
+        function renderColorSettings() {
+            const colorsList = document.getElementById('colorsList');
+            colorsList.innerHTML = '';
+
+            colors.forEach(color => {
+                const colorItem = document.createElement('div');
+                colorItem.style.cssText = 'background: white; padding: 15px; border-radius: 4px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);';
+                colorItem.innerHTML = `
+                    <div class="color-swatch" style="background-color: ${color.hex}; width: 50px; height: 50px;"></div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; color: #333;">${color.name}</div>
+                        <div style="font-size: 0.9rem; color: #999; font-family: 'Courier New', monospace;">${color.hex}</div>
+                    </div>
+                    <button class="btn btn-danger" style="padding: 8px 12px; font-size: 0.9rem;" onclick="deleteColor(${color.id})">Delete</button>
+                `;
+                colorsList.appendChild(colorItem);
+            });
+        }
+
+        function addNewColor() {
+            const colorHex = prompt('Enter hex color code (e.g., #FF0000)');
+            if (!colorHex || !colorHex.match(/^#[0-9A-F]{6}$/i)) {
+                showError('Invalid hex color code');
+                return;
+            }
+
+            const colorName = prompt('Enter color name');
+            if (!colorName) return;
+
+            const newColor = {
+                id: Math.max(...colors.map(c => c.id), 0) + 1,
+                name: colorName,
+                hex: colorHex.toUpperCase(),
+                category: 'custom'
+            };
+
+            colors.push(newColor);
+            localStorage.setItem('matrixColors', JSON.stringify(colors));
+            initializeColorPicker();
+            showSuccess('Color added successfully!');
+        }
+
+        function deleteColor(id) {
+            if (colors.length <= 1) {
+                showError('You must have at least one color');
+                return;
+            }
+
+            colors = colors.filter(c => c.id !== id);
+            localStorage.setItem('matrixColors', JSON.stringify(colors));
+            initializeColorPicker();
+            showSuccess('Color deleted successfully!');
+        }
+
+        function exportColors() {
+            const dataStr = JSON.stringify(colors, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'matrix-colors.json';
+            link.click();
+        }
+
+        function updateStats() {
+            document.getElementById('totalMatrices').textContent = matrices.length;
+            document.getElementById('totalColors').textContent = colors.length;
+            document.getElementById('recentEdits').textContent = matrices.filter(m => {
+                const created = new Date(m.created);
+                const now = new Date();
+                return (now - created) / (1000 * 60 * 60) <= 24;
+            }).length;
+        }
+
+        function showSuccess(message) {
+            const msgEl = document.getElementById('successMessage');
+            msgEl.textContent = message;
+            msgEl.classList.add('show');
+            setTimeout(() => msgEl.classList.remove('show'), 3000);
+        }
+
+        function showError(message) {
+            const msgEl = document.getElementById('errorMessage');
+            msgEl.textContent = message;
+            msgEl.classList.add('show');
+            setTimeout(() => msgEl.classList.remove('show'), 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('editModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
