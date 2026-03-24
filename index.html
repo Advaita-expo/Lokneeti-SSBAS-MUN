@@ -617,6 +617,68 @@ Re-examination of Sedition, UAPA, and Preventive Detention Laws.</p>
     </section>
 
     <!-- Footer - Gates Foundation Style -->
+    <!-- Newsletter Section - International Press (IP) -->
+    <section id="newsletter" class="py-28 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="text-[#003366] font-bold text-sm tracking-widest uppercase mb-4">From the Press</p>
+                <h2 class="text-4xl md:text-5xl font-bold">LokNeeti Times — Issue 1</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4 text-lg">A professional newsletter covering Lokneeti MUN highlights, committee summaries, and feature interviews. Produced by IP (International Press).</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <div style="height:420px; overflow:hidden; border-radius:14px; box-shadow:0 18px 40px rgba(2,6,23,0.08); background:#fff; display:flex; align-items:center; justify-content:center; border:1px solid rgba(0,0,0,0.04);">
+                        <object data="LokNeeti_Times_1.0_Newsletter.pdf" type="application/pdf" width="100%" height="420">
+                            <div style="padding:20px; text-align:center;">
+                                <p style="margin-bottom:8px; color:#666;">Preview not available in this browser.</p>
+                                <a href="LokNeeti_Times_1.0_Newsletter.pdf" target="_blank" class="px-4 py-2 border border-gray-300 rounded text-sm">Open PDF</a>
+                            </div>
+                        </object>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-500">If the preview fails, use <a href="LokNeeti_Times_1.0_Newsletter.pdf" target="_blank" class="text-[#003366] underline">this link</a> to open the PDF in your browser or download it.</div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Inside this issue</h3>
+                    <p class="text-gray-700 mb-6">Highlights from Lokneeti MUN, committee reports, exclusive interviews with delegates and chairs, photo essays, and analysis by the IP team.</p>
+
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                        <li><strong>Committee Briefs:</strong> Concise summaries of major resolutions and debates.</li>
+                        <li><strong>Feature Interview:</strong> An in-depth conversation with the Secretary General.</li>
+                        <li><strong>Photo Roundup:</strong> Moments from plenary and caucuses.</li>
+                    </ul>
+
+                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                        <button onclick="openPdf('LokNeeti_Times_1.0_Newsletter.pdf')" class="btn-primary">View Newsletter</button>
+                        <a href="LokNeeti_Times_1.0_Newsletter.pdf" download class="px-6 py-3 border-2 border-[#003366] text-[#003366] font-bold uppercase tracking-wide hover:bg-[#003366] hover:text-white transition-all rounded">Download PDF</a>
+                        <button onclick="showComingSoon()" class="px-6 py-3 border border-gray-300 text-gray-700 hover:shadow-sm transition-all rounded bg-white">More from IP</button>
+                    </div>
+
+                    <div class="text-sm text-gray-500">
+                        <div>Published by: <strong>IP — International Press</strong></div>
+                        <div class="mt-1">Issue: <strong>Vol. 1 • January 2026</strong> · Read time: <strong>4 min</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal viewer for PDF -->
+        <div id="pdf-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.78); z-index:90; align-items:center; justify-content:center; padding:24px;">
+            <div style="position:relative; width:100%; max-width:1200px; height:90vh; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 40px 80px rgba(2,6,23,0.35);">
+                <button id="pdf-close" aria-label="Close PDF" style="position:absolute; right:18px; top:18px; z-index:92; background:#fff; border:none; font-size:15px; padding:8px 12px; border-radius:8px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.08);">Close</button>
+                <iframe id="pdf-frame" src="" style="width:100%; height:100%; border:0;" allowfullscreen></iframe>
+            </div>
+        </div>
+        <!-- Coming Soon Modal -->
+        <div id="coming-soon-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:95; align-items:center; justify-content:center; padding:20px;">
+            <div style="background:#fff; padding:22px 28px; border-radius:10px; box-shadow:0 20px 40px rgba(2,6,23,0.2); max-width:480px; width:100%; text-align:center;">
+                <h4 style="margin:0 0 8px; font-size:20px; color:#003366;">Coming Soon</h4>
+                <p style="margin:0 0 14px; color:#555;">More content from IP is on the way — stay tuned for updates.</p>
+                <button id="coming-close" style="background:#003366; color:#fff; padding:8px 14px; border-radius:8px; border:none; cursor:pointer;">OK</button>
+            </div>
+        </div>
+    </section>
     <footer class="bg-[#1a1a1a] text-white">
         <!-- Top Footer -->
         <div class="max-w-7xl mx-auto px-6 py-16">
@@ -898,5 +960,52 @@ Re-examination of Sedition, UAPA, and Preventive Detention Laws.</p>
             });
         })();
     </script>
+        <script>
+            // PDF modal open/close
+            function openPdf(url){
+                const modal = document.getElementById('pdf-modal');
+                const frame = document.getElementById('pdf-frame');
+                if(!modal || !frame) return;
+                frame.src = url;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            function closePdf(){
+                const modal = document.getElementById('pdf-modal');
+                const frame = document.getElementById('pdf-frame');
+                if(!modal || !frame) return;
+                frame.src = '';
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            document.addEventListener('click', function(e){
+                const modal = document.getElementById('pdf-modal');
+                if(!modal) return;
+                if(e.target === modal) closePdf();
+                if(e.target && e.target.id === 'pdf-close') closePdf();
+            });
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closePdf(); });
+        
+            // Coming Soon modal
+            function showComingSoon(){
+                const m = document.getElementById('coming-soon-modal');
+                if(!m) return;
+                m.style.display = 'flex';
+                // auto-hide after 2500ms
+                window._comingSoonTimer = setTimeout(()=>{ if(m) m.style.display='none'; }, 2500);
+            }
+            function hideComingSoon(){
+                const m = document.getElementById('coming-soon-modal');
+                if(!m) return;
+                m.style.display = 'none';
+                if(window._comingSoonTimer) { clearTimeout(window._comingSoonTimer); window._comingSoonTimer = null; }
+            }
+            document.addEventListener('click', function(e){
+                const m = document.getElementById('coming-soon-modal');
+                if(!m) return;
+                if(e.target === m || (e.target && e.target.id === 'coming-close')) hideComingSoon();
+            });
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') hideComingSoon(); });
+        </script>
 </body>
 </html>
